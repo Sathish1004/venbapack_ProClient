@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Syncopate:wght@400;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #0f172a; /* Slate 900 */
+  font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-premium {
+  font-family: 'Outfit', sans-serif;
+}
+
+.font-serif-premium {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-industrial {
+  font-family: 'Michroma', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.font-sync {
+  font-family: 'Syncopate', sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9; /* Slate 100 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6; /* Blue 500 */
+  border-radius: 5px;
+  background-image: linear-gradient(to bottom, #06b6d4, #3b82f6, #8b5cf6);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb; 
+}
+
+/* Text Selection */
+::selection {
+  background-color: #8b5cf6; /* Purple 500 */
+  color: #ffffff;
+}
+
+/* 3D Flip Card Styles */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Industry Card Hover Effect */
+.industry-card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.industry-card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Floating Animation for Background Icons */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-15px) translateX(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 8s ease-in-out infinite;
+}

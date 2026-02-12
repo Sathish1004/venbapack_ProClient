@@ -8,50 +8,50 @@ const Products = () => {
     {
       id: "corrugated-boxes",
       title: "Corrugated Boxes",
-      desc: "Heavy-duty corrugated boxes engineered for maximum stacking strength. Designed for industrial shipping, these boxes provide reliable protection for every delivery.",
-      img: "/corrugate_canva.jpg",
+      desc: "Heavy-duty corrugated boxes engineered for maximum stacking strength and superior crush resistance. Designed for industrial shipping and warehouse storage, these boxes provide reliable protection for every delivery, ensuring your products remain secure throughout the entire supply chain journey.",
+      img: "/outcorugated.png",
     },
     {
       id: "corrugated-rolls",
       title: "Corrugated Rolls & Sheets",
-      desc: "Shock-absorbing rolls and sheets provide versatile cushioning for irregular items. These materials protect against vibrations and scratches during industrial transit.",
-      img: "/rollsheet_canva.jpg",
+      desc: "Shock-absorbing rolls and sheets provide versatile cushioning for irregular items and fragile components. These premium materials protect against vibrations, impacts, and scratches during industrial transit, offering flexible wrapping solutions that conform to any product shape or size requirement.",
+      img: "/rollsout.png",
     },
     {
       id: "die-cut",
       title: "Die Cut Boxes",
-      desc: "Precision die-cut packaging for products requiring an exact fit. These tape-free solutions offer professional aesthetics with rugged industrial-grade protection.",
-      img: "/diecut_boxCanva.jpg",
+      desc: "Precision die-cut packaging for products requiring an exact fit and custom dimensions. These innovative tape-free solutions offer professional aesthetics with rugged industrial-grade protection, featuring easy assembly designs that reduce packaging time while maintaining structural integrity and brand presentation excellence.",
+      img: "/die_cutout.png",
     },
     {
       id: "raffia-bags",
       title: "Raffia Grade Bundle Bags",
-      desc: "High-strength woven bags for industrial bulk storage and transport. These moisture-resistant bags handle heavy weights with ease and absolute security.",
-      img: "/raffiagradeBagsCanva.jpg",
+      desc: "High-strength woven bags for industrial bulk storage and transport of agricultural and textile products. These moisture-resistant bags handle heavy weights with ease and absolute security, featuring reinforced stitching and UV-stabilized materials that ensure long-lasting durability in demanding outdoor and warehouse environments.",
+      img: "/raffiaoutc.png",
     },
     {
       id: "gum-tapes",
       title: "Gum Tapes",
-      desc: "Advanced adhesive gum tapes create permanent, tamper-evident bonds on corrugated surfaces. These tapes provide essential moisture protection for global shipping.",
-      img: "/gumTapes_canva.jpg",
+      desc: "Advanced adhesive gum tapes create permanent, tamper-evident bonds on corrugated surfaces for maximum security. These professional-grade tapes provide essential moisture protection for global shipping operations, featuring water-activated adhesive technology that penetrates box fibers to create an unbreakable seal resistant to temperature fluctuations.",
+      img: "/gumtapeout.png",
     },
     {
       id: "box-straps",
       title: "Box Straps",
-      desc: "High-tensile box straps for secure bundling of heavy export loads. Manufactured from superior polyester, they ensure stable and unified cargo.",
-      img: "/BoxStarps_Canva.jpg",
+      desc: "High-tensile box straps for secure bundling of heavy export loads and consolidated shipments. Manufactured from superior polyester with exceptional break strength, they ensure stable and unified cargo during handling, featuring weather-resistant properties and consistent tension retention that prevents load shifting throughout international transit.",
+      img: "/strapbox copy.png",
     },
     {
       id: "strapping-tools",
       title: "Strapping Tools",
-      desc: "Ergonomic strapping tools optimized for high-speed industrial operations. These durable tools allow for consistent tensioning and secure sealing with minimal effort.",
-      img: "/strappingtools_canva.jpg",
+      desc: "Ergonomic strapping tools optimized for high-speed industrial operations and repetitive packaging tasks. These durable professional tools allow for consistent tensioning and secure sealing with minimal effort, reducing operator fatigue while increasing productivity through precision-engineered mechanisms designed for thousands of reliable cycles.",
+      img: "/toolsboxx.png",
     },
     {
       id: "stitching-ropes",
       title: "Bundle Stitching Ropes & Tools",
-      desc: "Premium nylon and cotton ropes for reliable bundle security. These high-strength solutions ensure tight closures during long-distance industrial transport.",
-      img: "/BundelPack_Canva.jpg",
+      desc: "Premium nylon and cotton ropes for reliable bundle security and traditional packaging methods. These high-strength solutions ensure tight closures during long-distance industrial transport, offering excellent knot retention and abrasion resistance that withstands rough handling while maintaining bundle integrity across diverse shipping conditions.",
+      img: "/outbundele.png",
     },
   ];
 
@@ -89,8 +89,18 @@ const Products = () => {
       </section>
 
       {/* PRODUCTS GRID SECTION */}
-      <section className="bg-[#F5F7FA] py-[60px] px-4 md:px-[40px]">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="bg-white py-[60px] px-4 md:px-[2%] relative overflow-hidden">
+        {/* Background Overlay */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#F0F7FF] via-white to-[#F0F7FF] opacity-70" />
+          <img 
+            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=80" 
+            alt="Background Texture" 
+            className="w-full h-full object-cover opacity-[0.05] grayscale"
+          />
+        </div>
+
+        <div className="max-w-[1490px] mx-auto relative z-10">
           
           {/* Section Heading - Centered */}
           <div className="text-center mb-20 max-w-5xl mx-auto px-4">
@@ -123,7 +133,7 @@ const Products = () => {
                 className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.3333%-16px)] bg-white rounded-[16px] shadow-[0px_4px_12px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col group hover:shadow-[0px_10px_30px_rgba(0,0,0,0.12)] transition-all duration-500 border border-slate-100"
               >
                 {/* Product Image - Fixed Height for consistency */}
-                <div className="h-[260px] w-full overflow-hidden shrink-0">
+                <div className="h-[225px] w-full overflow-hidden shrink-0">
                    <img 
                     src={prod.img} 
                     alt={prod.title} 
@@ -132,31 +142,18 @@ const Products = () => {
                 </div>
 
                 {/* Content Area - flex-grow ensures this fills the card height */}
-                <div className="p-7 flex flex-col flex-grow bg-white">
+                <div className="p-6 flex flex-col flex-grow bg-white">
                   {/* Title - Bold 20px - min-height 2 lines to keep alignment */}
-                  <h3 className="text-[20px] font-bold text-slate-800 mb-4 group-hover:text-blue-600 transition-colors uppercase tracking-tight min-h-[56px] flex items-center">
+                  <h3 className="text-[22px] font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors uppercase tracking-tight min-h-[54px] flex items-center justify-center text-center">
                     {prod.title}
                   </h3>
 
                   {/* Description Box with Curved Blue Accent Strip - Fixed min-height for uniform alignment */}
-                  <div className="relative mb-8 bg-[#F9FAFB] rounded-r-[12px] p-4 border border-slate-50 overflow-hidden flex-grow min-h-[100px]">
-                    {/* The Curved Blue Strip (▌) */}
-                    <div className="absolute left-0 top-0 bottom-0 w-[5px] bg-gradient-to-b from-[#4facfe] to-[#00f2fe] rounded-r-full" />
+                  <div className="relative mb-4 bg-[#F9FAFB] rounded-[12px] p-4 border border-slate-50 overflow-hidden flex-grow min-h-[105px] flex items-center justify-center">
                     
-                    <p className="text-[14px] text-slate-500 leading-relaxed font-premium pl-2">
+                    <p className="text-[16px] text-slate-900 leading-relaxed font-premium text-center font-medium">
                        {prod.desc}
                     </p>
-                  </div>
-                  
-                  {/* View Specs Link - Stays at bottom due to flex-grow above */}
-                  <div className="mt-auto">
-                    <Link 
-                      to="/contact#send-message" 
-                      className="inline-flex items-center gap-2 text-[#1E73FF] font-bold text-[14px] uppercase tracking-widest border-b-2 border-[#1E73FF] pb-1 hover:text-[#0052D4] hover:border-[#0052D4] transition-all group/link"
-                    >
-                      View Specs 
-                      <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                    </Link>
                   </div>
                 </div>
               </motion.div>

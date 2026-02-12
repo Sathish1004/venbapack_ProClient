@@ -38,30 +38,57 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen text-slate-900 pt-20">
+    <div className="bg-[#FFFFFF] min-h-screen text-slate-900 pt-20 relative overflow-hidden">
       
-      {/* HERO BANNER SECTION - REDUCED HEIGHT */}
-      <section className="relative w-full h-[50vh] md:h-[60vh] flex items-center justify-end overflow-hidden bg-white">
+      {/* Premium Mirror Design Background Design */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Architectural Base Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#F4F9FF] via-[#FFFFFF] to-[#F1F6FE]" />
         
-        {/* Seamless Background Image - Positioned Left */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/ConatctUsClear.png" 
-            alt="Contact VenbaPack" 
-            className="w-full h-full object-cover object-center opacity-100"
-          />
+        {/* Soft reflective light blobs (Mirror Reflections) */}
+        <div className="absolute top-[10%] -left-[5%] w-[45%] h-[45%] bg-blue-100/40 rounded-full blur-[140px] mix-blend-multiply animate-pulse" />
+        <div className="absolute bottom-[10%] -right-[5%] w-[40%] h-[50%] bg-indigo-50/50 rounded-full blur-[120px] mix-blend-multiply" />
+        <div className="absolute top-[35%] right-[10%] w-[400px] h-[400px] bg-sky-50/60 rounded-full blur-[90px]" />
+        <div className="absolute bottom-[30%] left-[20%] w-[300px] h-[300px] bg-white rounded-full blur-[60px] opacity-60" />
+        
+        {/* Mirror-like subtle technical grid for depth */}
+        <div className="absolute inset-0 opacity-[0.04]" 
+             style={{ 
+               backgroundImage: `linear-gradient(to right, #1E73FF 1px, transparent 1px), linear-gradient(to bottom, #1E73FF 1px, transparent 1px)`,
+               backgroundSize: '60px 60px' 
+             }} 
+        />
+        
+        {/* Diagonal Light Streak (Mirror Shine) */}
+        <div className="absolute inset-0 opacity-[0.02] rotate-12 bg-gradient-to-r from-transparent via-white to-transparent w-[200%] h-full -translate-x-1/2" />
+      </div>
+      
+      {/* HERO BANNER SECTION - FULL WIDTH SINGLE CONTAINER */}
+      <section className="relative w-full h-[60vh] md:h-[75vh] flex items-center justify-center overflow-hidden bg-white border-b border-slate-100 shadow-xl">
+        
+        {/* Full Image Background Container */}
+        <div className="absolute inset-0 z-0 bg-white">
+           <div 
+             className="w-full h-full"
+             style={{ 
+               backgroundImage: `url("/mainconatct phn.png")`,
+               backgroundSize: 'contain',
+               backgroundPosition: '15% center',
+               backgroundRepeat: 'no-repeat'
+             }}
+           />
         </div>
 
-        {/* Content Container - Right Aligned with Seamless Integration */}
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 w-full relative z-10 flex justify-end">
+        {/* Layered Content Overlay - Positioned for clarity */}
+        <div className="w-full h-full relative z-20 flex items-center justify-end px-6 md:px-12 lg:px-24">
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-2xl text-right flex flex-col items-end"
+            className="max-w-xl text-right flex flex-col items-end bg-white/10 backdrop-blur-[2px] p-6 rounded-2xl"
           >
-            {/* Main Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-slate-900 mb-4 uppercase tracking-tighter font-premium leading-[0.9]">
+            {/* Main Title with shadow for readability if overlapping */}
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-slate-900 mb-4 uppercase tracking-tighter font-premium leading-[0.9] drop-shadow-sm">
               Contact <span className="text-blue-600">Us</span>
             </h1>
             
@@ -73,9 +100,10 @@ const Contact = () => {
               className="h-[4px] bg-[#D4AF37] rounded-full shadow-lg shadow-yellow-600/10 mb-6" 
             />
 
-            <p className="text-slate-700 text-sm md:text-base font-medium max-w-lg leading-relaxed font-premium opacity-90 text-justify">
-              Reach out to our engineering team for bespoke packaging 
-              solutions, custom technical specifications, and global trade compliance expertise.
+            <p className="text-slate-800 text-base md:text-lg font-bold leading-relaxed font-premium text-right max-w-md drop-shadow-sm">
+              Explore bespoke industrial packaging with our 
+              global engineering team. We provide high-performance 
+              solutions tailored to your supply chain requirements.
             </p>
           </motion.div>
         </div>
@@ -93,7 +121,9 @@ const Contact = () => {
              className="flex flex-col gap-5 h-full"
            >
               {/* 1. Contact Info Card */}
-              <div className="bg-white rounded-[24px] p-6 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] border border-slate-100 relative overflow-hidden">
+              <div className="bg-white/70 backdrop-blur-md rounded-[24px] p-6 shadow-[0_10px_40px_-10px_rgba(30,115,255,0.08)] border border-white relative overflow-hidden group">
+                 {/* Internal mirror reflection effect */}
+                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-tr from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full" />
                  <div className="space-y-6 relative z-10">
                     
                     {/* HQ */}
@@ -157,12 +187,12 @@ const Contact = () => {
            </motion.div>
 
            {/* RIGHT COLUMN: FORM */}
-           <motion.div 
-             initial={{ opacity: 0, x: 30 }}
-             animate={{ opacity: 1, x: 0 }}
-             transition={{ duration: 0.8, delay: 0.4 }}
-             className="bg-white p-8 md:p-12 rounded-[24px] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col justify-center min-h-[500px]"
-           >
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="bg-white/80 backdrop-blur-xl p-8 md:p-12 rounded-[24px] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] border border-white/60 flex flex-col justify-center min-h-[500px]"
+            >
               <h3 className="text-2xl font-black text-slate-900 mb-6 tracking-tight">Send Us a Message</h3>
               
               <AnimatePresence mode="wait">
@@ -257,7 +287,7 @@ const Contact = () => {
                            Sending...
                          </>
                        ) : (
-                         "Forward Inquiry"
+                         "Get in Touch"
                        )}
                      </motion.button>
                   </motion.form>

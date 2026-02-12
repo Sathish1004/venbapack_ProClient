@@ -258,7 +258,7 @@ const Home = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2">
               
               {/* Left Side: About Us Text - 50% Width */}
-              <div className="p-8 lg:p-12 flex flex-col justify-center relative">
+              <div className="p-8 lg:p-12 flex flex-col relative">
                 {/* Subtle Background Patterns */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                   <div className="absolute top-10 left-10 w-16 h-16 border-2 border-slate-400 rounded-lg rotate-12" />
@@ -274,7 +274,7 @@ const Home = () => {
                     About Us
                   </h3>
                   
-                  <div className="space-y-4 text-slate-700 text-[1.05rem] leading-relaxed font-medium">
+                  <div className="space-y-4 text-slate-700 text-[1.158rem] leading-relaxed font-medium">
                     <p>
                       <span className="font-bold text-slate-900">VenbaPack Industries</span> — With over a decade of expertise, we have established ourselves as a premier provider of high-quality, reliable, and sustainable packaging solutions. Operating from our state-of-the-art manufacturing facility, we serve a global clientele with precision-engineered corrugated packaging and industrial-strength materials.
                     </p>
@@ -282,6 +282,12 @@ const Home = () => {
                     <p>
                       Our specialized approach combines cutting-edge innovation with uncompromising durability. We cater to diverse sectors including <span className="text-blue-600 font-bold">Textile, Agriculture, FMCG, and Industrial Manufacturing</span>, delivering tailor-made solutions that optimize your supply chain while prioritizing moisture resistance, crush strength, and eco-friendly standards.
                     </p>
+                    
+                    <p>
+                      From custom-designed corrugated boxes to heavy-duty industrial packaging, our comprehensive product range meets the unique demands of every industry. We leverage advanced manufacturing technology and rigorous quality control processes to ensure each package delivers maximum protection during storage and transit.
+                    </p>
+                    
+                 
                   </div>
                 </div>
               </div>
@@ -304,7 +310,7 @@ const Home = () => {
 
       {/* --- INDUSTRIES & EXPERTISE SECTION (CONSOLIDATED) --- */}
       <section className="py-8 bg-slate-50/50 relative overflow-hidden border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 w-full px-[3%]">
           
           {/* Section Header */}
           <div className="text-center mb-8 relative z-10">
@@ -376,7 +382,7 @@ const Home = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-2xl shadow-slate-200/50"
+                  className="bg-white p-10 md:p-12 rounded-3xl border border-slate-100 shadow-2xl shadow-slate-200/50 min-h-[600px]"
                 >
                   {/* Header with Shrinking Title and Sliding Image */}
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8">
@@ -409,11 +415,11 @@ const Home = () => {
                     </motion.div>
                   </div>
                   
-                  <p className="text-slate-600 leading-relaxed mb-8 text-[1.1rem]">
+                  <p className="text-slate-600 leading-relaxed mb-10 text-[1.1rem]">
                     {activeIndustry.desc}
                   </p>
 
-                  <div className="space-y-4 mb-10">
+                  <div className="space-y-4 mb-12">
                     {activeIndustry.features.map((item, idx) => (
                       <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-slate-50/50 border border-slate-200/50 shadow-sm hover:border-blue-200 transition-colors">
                         <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
@@ -436,7 +442,7 @@ const Home = () => {
       </section>
       {/* --- OUR PRODUCT SECTION --- */}
       <section className="py-10 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="relative z-10 w-full px-[3%]">
           {/* Section Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -474,7 +480,7 @@ const Home = () => {
                 style={{ filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.05))' }}
               >
                 {/* Top Area: Seamless Video area */}
-                <div className="relative h-[250px] overflow-hidden shrink-0 bg-slate-900 z-10">
+                <div className="relative h-[300px] overflow-hidden shrink-0 bg-slate-900 z-10">
                   <video
                     key={product.video}
                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
@@ -493,7 +499,7 @@ const Home = () => {
                 {/* Bottom Area: Concave Base Container */}
                 <div className="flex-grow flex flex-col relative z-20 -mt-14">
                   <div 
-                    className="bg-gradient-to-b from-[#0B121A] to-[#04080D] text-white flex flex-col items-center justify-center p-6 transition-all duration-500 min-h-[140px] relative overflow-hidden"
+                    className="bg-gradient-to-b from-[#0B121A] to-[#04080D] text-white flex flex-col items-center justify-center p-6 transition-all duration-500 min-h-[160px] relative overflow-hidden"
                     style={{ 
                       clipPath: 'ellipse(130% 100% at 50% 100%)',
                       paddingTop: '45px'

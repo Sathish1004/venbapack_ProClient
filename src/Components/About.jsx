@@ -103,8 +103,8 @@ const About = () => {
       </section>
 
       {/* ABOUT VENBAPACK – SINGLE FULL-WIDTH SECTION */}
-      <section className="w-full bg-white py-8 px-[5%]">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="w-full bg-white py-8 px-[3%]">
+        <div className="max-w-full mx-auto">
           
           {/* Full-Width Gradient Container */}
           <motion.div
@@ -120,7 +120,7 @@ const About = () => {
             </h2>
 
             {/* Description Text */}
-            <div className="space-y-6 text-[#4A5568] text-[16.5px] md:text-[18px] leading-[1.8] max-w-[1100px] mx-auto">
+            <div className="space-y-6 text-[#4A5568] text-[18.5px] md:text-[18px] leading-[1.8] max-w-full mx-auto">
               <p>
                 Founded with a core focus on manufacturing excellence, <span className="font-bold text-[#0B1220]">VenbaPack Industries</span> has spent over a decade perfecting the art of industrial packaging. Our state-of-the-art facility in Coimbatore serves as the hub for precision engineering, where we transform raw materials into high-performance packaging solutions that protect your most valuable goods.
               </p>
@@ -140,7 +140,7 @@ const About = () => {
 
       {/* VENBAPACK — VISION, MISSION & CORE VALUES */}
       <section className="w-full bg-white py-6">
-        <div className="w-full px-[5%]">
+        <div className="w-full px-[3.5%]">
           
           {/* Section Heading with Animated Underline */}
           <motion.div
@@ -165,7 +165,7 @@ const About = () => {
 
           {/* Big Parent Container */}
           <div className="w-full bg-[#F4F6FA] rounded-[16px] py-10 px-[5%]">
-            <div className="max-w-[1400px] mx-auto">
+            <div className="max-w-[1440px] mx-auto">
               
               {/* Three Cards Container */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -272,7 +272,7 @@ const About = () => {
           />
         </div>
 
-        <div className="max-w-[1440px] mx-auto px-[5%] relative z-10">
+        <div className="max-w-[1584px] mx-auto px-[3%] relative z-10">
           
           {/* Section Heading */}
           <motion.div
@@ -416,7 +416,7 @@ const About = () => {
           <div className="absolute top-1/3 right-10 text-6xl">🍃</div>
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-[5%] relative z-10">
+        <div className="max-w-[1540px] mx-auto px-[2%] relative z-10">
           
           {/* Section Title with Animated Underline */}
           <motion.div
@@ -592,7 +592,7 @@ const About = () => {
         </div>
 
         {/* Full Width Content Container */}
-        <div className="w-full px-[5%] relative z-10">
+        <div className="w-full px-[2.5%] relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

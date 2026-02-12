@@ -135,7 +135,7 @@ const Navbar = () => {
                      <Link
                       to={item.path}
                       className={item.name === 'Contact Us' 
-                        ? "bg-[#1E73FF] text-white font-sans text-base font-semibold px-6 py-2 rounded-[999px] hover:bg-[#1557CC] transition-all duration-300 whitespace-nowrap"
+                        ? "bg-[#00008B] text-white font-sans text-base font-semibold px-6 py-2 rounded-[999px] hover:bg-[#0000CD] transition-all duration-300 whitespace-nowrap"
                         : `font-sans text-base font-semibold transition-colors duration-300 whitespace-nowrap ${
                             location.pathname === item.path ? 'text-[#1E90FF]' : 'text-slate-700 hover:text-[#1E90FF]'
                           }`

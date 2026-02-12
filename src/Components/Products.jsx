@@ -151,7 +151,7 @@ const Products = () => {
                   {/* View Specs Link - Stays at bottom due to flex-grow above */}
                   <div className="mt-auto">
                     <Link 
-                      to="/contact" 
+                      to="/contact#send-message" 
                       className="inline-flex items-center gap-2 text-[#1E73FF] font-bold text-[14px] uppercase tracking-widest border-b-2 border-[#1E73FF] pb-1 hover:text-[#0052D4] hover:border-[#0052D4] transition-all group/link"
                     >
                       View Specs 

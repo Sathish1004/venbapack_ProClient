@@ -206,7 +206,7 @@ const Home = () => {
             transition={{ duration: 1, ease: "easeOut" }}
           >
             <h1 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter drop-shadow-2xl font-premium uppercase leading-[0.9]">
-                <br /> <span className="text-blue-600"></span>
+                 <br /> <span className="text-blue-600"></span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-100 mb-12 max-w-2xl mx-auto font-medium leading-relaxed font-premium opacity-95 drop-shadow-lg">
               Industrial grade corrugated boxes, rolls and bespoke packaging for global enterprises.
@@ -215,7 +215,7 @@ const Home = () => {
               <Link to="/products" className="group px-12 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all shadow-2xl hover:shadow-blue-500/40 flex items-center justify-center gap-3 text-lg">
                 Explore Products <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link to="/contact" className="px-12 py-5 bg-white/10 hover:bg-white/20 text-white border-2 border-white/40 rounded-full font-bold transition-all backdrop-blur-md flex items-center justify-center text-lg">
+              <Link to="/contact#send-message" className="px-12 py-5 bg-white/10 hover:bg-white/20 text-white border-2 border-white/40 rounded-full font-bold transition-all backdrop-blur-md flex items-center justify-center text-lg">
                 Get a Quote
               </Link>
             </div>
@@ -631,7 +631,7 @@ const Home = () => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
               <Link 
-                to="/contact" 
+                to="/contact#send-message" 
                 className="w-full sm:w-auto px-10 py-4 bg-[#0B1C2D] text-white rounded-full font-bold text-base hover:bg-blue-700 transition-all shadow-[0_20px_40px_-15px_rgba(11,28,45,0.3)] flex items-center justify-center gap-3 group"
               >
                 Get a Quote <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

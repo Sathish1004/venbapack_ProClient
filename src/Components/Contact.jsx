@@ -1,29 +1,55 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Send, Clock, Globe } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin, Phone, Mail, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import ContactHeroImg from '../assets/contactpage.jpg';
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMessage("");
+    const formData = new FormData(e.target);
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/sathishj0423@gmail.com", {
+        method: "POST",
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+         setIsSubmitted(true);
+         e.target.reset();
+      } else {
+         setErrorMessage("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+       console.error("Error:", error);
+       setErrorMessage("Error sending message. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="bg-slate-50 min-h-screen text-slate-900 pt-20">
       
-      {/* HERO BANNER SECTION - MAXIMIZED HEIGHT */}
-      <section className="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-end overflow-hidden bg-[#e2eff5]">
+      {/* HERO BANNER SECTION - REDUCED HEIGHT */}
+      <section className="relative w-full h-[50vh] md:h-[60vh] flex items-center justify-end overflow-hidden bg-white">
         
         {/* Seamless Background Image - Positioned Left */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/contact phn.jpg" 
-            alt="" 
-            className="w-full h-full object-cover object-left md:object-left-top opacity-90"
+            src="/ConatctUsClear.png" 
+            alt="Contact VenbaPack" 
+            className="w-full h-full object-cover object-center opacity-100"
           />
-          
-          {/* Mirror Shade Reflective Overlays */}
-          <div className="absolute inset-x-0 top-0 h-[80px] bg-gradient-to-b from-white/70 via-white/30 to-transparent pointer-events-none" />
-          <div className="absolute inset-x-0 bottom-0 h-[80px] bg-gradient-to-t from-white/60 via-white/20 to-transparent pointer-events-none" />
-          
-          {/* Gradual Fade to Content Side */}
-          <div className="absolute inset-0 bg-gradient-to-l from-[#e2eff5] via-[#e2eff5]/40 to-transparent" />
         </div>
 
         {/* Content Container - Right Aligned with Seamless Integration */}
@@ -56,7 +82,7 @@ const Contact = () => {
       </section>
 
       {/* MAIN CONTACT SECTION - COMPACT SINGLE SCREEN VIEW */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
+      <div id="send-message" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10 scroll-mt-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
            
            {/* LEFT COLUMN: INFO CARD + MAP */}
@@ -72,8 +98,8 @@ const Contact = () => {
                     
                     {/* HQ */}
                     <div className="flex items-start gap-4">
-                       <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 shrink-0 shadow-sm">
-                          <MapPin className="w-5 h-5" />
+                       <div className="w-12 h-12 shrink-0 rounded-full overflow-hidden shadow-sm border border-slate-100">
+                          <img src="/mapinconatiner.jpg" alt="HQ" className="w-full h-full object-cover" />
                        </div>
                        <div>
                           <h4 className="text-lg font-bold text-slate-900 mb-1">Our HQ</h4>
@@ -83,8 +109,8 @@ const Contact = () => {
 
                     {/* Phone */}
                     <div className="flex items-start gap-4">
-                       <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center text-purple-600 shrink-0 shadow-sm">
-                          <Phone className="w-5 h-5" />
+                       <div className="w-12 h-12 shrink-0 rounded-full overflow-hidden shadow-sm border border-slate-100">
+                          <img src="/contact%20phn.jpg" alt="Phone" className="w-full h-full object-cover" />
                        </div>
                        <div>
                           <h4 className="text-lg font-bold text-slate-900 mb-1">Phone</h4>
@@ -95,8 +121,8 @@ const Contact = () => {
 
                     {/* Email */}
                     <div className="flex items-start gap-4">
-                       <div className="w-12 h-12 bg-teal-50 rounded-full flex items-center justify-center text-teal-600 shrink-0 shadow-sm">
-                          <Mail className="w-5 h-5" />
+                       <div className="w-12 h-12 shrink-0 rounded-full overflow-hidden shadow-sm border border-slate-100">
+                          <img src="/mail.jpg" alt="Email" className="w-full h-full object-cover" />
                        </div>
                        <div>
                           <h4 className="text-lg font-bold text-slate-900 mb-1">Email</h4>
@@ -135,43 +161,108 @@ const Contact = () => {
              initial={{ opacity: 0, x: 30 }}
              animate={{ opacity: 1, x: 0 }}
              transition={{ duration: 0.8, delay: 0.4 }}
-             className="bg-white p-8 md:p-12 rounded-[24px] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col justify-center"
+             className="bg-white p-8 md:p-12 rounded-[24px] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col justify-center min-h-[500px]"
            >
               <h3 className="text-2xl font-black text-slate-900 mb-6 tracking-tight">Send Us a Message</h3>
-              <form className="space-y-6">
-                 
-                 {/* Name Field */}
-                 <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Name <span className="text-red-500">*</span></label>
-                    <input type="text" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all text-slate-900 text-sm font-medium placeholder:text-slate-400" placeholder="Your Name" required />
-                 </div>
+              
+              <AnimatePresence mode="wait">
+                {isSubmitted ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    className="flex flex-col items-center justify-center text-center py-10 space-y-6"
+                  >
+                    <div className="w-24 h-24 mb-4 bg-white rounded-full p-2 shadow-sm border border-slate-100">
+                      <img 
+                        src="/contact%20phn.jpg" 
+                        alt="Message Sent" 
+                        className="w-full h-full object-contain rounded-full"
+                      />
+                    </div>
+                    <h4 className="text-2xl font-bold text-slate-900">Message Sent Successfully!</h4>
+                    <p className="text-slate-600 max-w-sm">
+                      Thank you for contacting VenbaPack. We have received your inquiry and will get back to you within 24 hours.
+                    </p>
+                    <button 
+                      onClick={() => setIsSubmitted(false)}
+                      className="px-8 py-3 bg-[#1E73FF] text-white rounded-xl font-bold hover:bg-[#0B1C2D] transition-colors cursor-pointer"
+                    >
+                      Send Another Message
+                    </button>
+                  </motion.div>
+                ) : (
+                  <motion.form 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    action="https://formsubmit.co/sathishj0423@gmail.com" 
+                    method="POST" 
+                    onSubmit={handleSubmit} 
+                    className="space-y-6"
+                  >
+                     {/* Hidden Configuration Fields */}
+                     <input type="hidden" name="_captcha" value="false" />
+                     <input type="hidden" name="_template" value="table" />
+                     <input type="text" name="_honey" style={{ display: 'none' }} />
+                     
+                     {/* Name Field */}
+                     <div className="space-y-1.5">
+                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Name <span className="text-red-500">*</span></label>
+                        <input type="text" name="name" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all text-slate-900 text-sm font-medium placeholder:text-slate-400" placeholder="Your Name" required disabled={isSubmitting} />
+                     </div>
 
-                 {/* Phone Field */}
-                 <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Phone Number <span className="text-red-500">*</span></label>
-                    <input type="tel" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all text-slate-900 text-sm font-medium placeholder:text-slate-400" placeholder="Your Phone Number" required />
-                 </div>
+                     {/* Phone Field */}
+                     <div className="space-y-1.5">
+                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Phone Number <span className="text-red-500">*</span></label>
+                        <input type="tel" name="phone" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all text-slate-900 text-sm font-medium placeholder:text-slate-400" placeholder="Your Phone Number" required disabled={isSubmitting} />
+                     </div>
 
-                 {/* Email Field */}
-                 <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Email <span className="text-red-500">*</span></label>
-                    <input type="email" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all text-slate-900 text-sm font-medium placeholder:text-slate-400" placeholder="your@email.com" required />
-                 </div>
+                     {/* Email Field */}
+                     <div className="space-y-1.5">
+                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Email <span className="text-red-500">*</span></label>
+                        <input type="email" name="email" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all text-slate-900 text-sm font-medium placeholder:text-slate-400" placeholder="your@email.com" required disabled={isSubmitting} />
+                     </div>
 
-                 {/* Message Field */}
-                 <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Message</label>
-                    <textarea rows="5" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all text-slate-900 text-sm font-medium placeholder:text-slate-400 resize-none" placeholder="Tell us about your requirements..."></textarea>
-                 </div>
+                     {/* Message Field */}
+                     <div className="space-y-1.5">
+                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Message</label>
+                        <textarea name="message" rows="5" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all text-slate-900 text-sm font-medium placeholder:text-slate-400 resize-none" placeholder="Tell us about your requirements..." required disabled={isSubmitting}></textarea>
+                     </div>
 
-                 <motion.button 
-                    whileHover={{ scale: 1.02, boxShadow: "0 20px 30px -10px rgba(59, 130, 246, 0.4)" }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-4 rounded-xl text-base shadow-lg hover:brightness-110 transition-all uppercase tracking-widest mt-2"
-                 >
-                   Forward Inquiry
-                 </motion.button>
-              </form>
+                     {errorMessage && (
+                       <div className="p-4 bg-red-50 border border-red-100 rounded-xl flex items-center gap-3 text-red-600 text-sm font-medium">
+                         <AlertCircle className="w-5 h-5 shrink-0" />
+                         {errorMessage}
+                       </div>
+                     )}
+
+                     <motion.button 
+                        type="submit"
+                        disabled={isSubmitting}
+                        whileHover={!isSubmitting ? { scale: 1.02, boxShadow: "0 20px 30px -10px rgba(59, 130, 246, 0.4)" } : {}}
+                        whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                        className={`w-full font-bold py-4 rounded-xl text-base shadow-lg transition-all uppercase tracking-widest mt-2 flex items-center justify-center gap-2 ${
+                          isSubmitting 
+                            ? 'bg-slate-300 text-slate-500 cursor-not-allowed' 
+                            : 'bg-gradient-to-r from-[#1E73FF] to-[#0B1C2D] text-white hover:brightness-110 cursor-pointer'
+                        }`}
+                     >
+                       {isSubmitting ? (
+                         <>
+                           <svg className="animate-spin h-5 w-5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                           </svg>
+                           Sending...
+                         </>
+                       ) : (
+                         "Forward Inquiry"
+                       )}
+                     </motion.button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
            </motion.div>
         </div>
       </div>

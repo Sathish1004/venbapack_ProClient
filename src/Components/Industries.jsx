@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shirt, Sprout, ShoppingBag, Truck, Zap, ArrowRight, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 
@@ -154,9 +155,12 @@ const Industries = () => {
                                     ))}
                                 </div>
 
-                                <button className="w-full py-4 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-yellow-600 transition-all shadow-lg hover:shadow-yellow-500/25 flex items-center justify-center gap-2 group">
+                                <Link 
+                                    to="/contact#send-message"
+                                    className="w-full py-4 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-yellow-600 transition-all shadow-lg hover:shadow-yellow-500/25 flex items-center justify-center gap-2 group"
+                                >
                                     Get specialized quote <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </button>
+                                </Link>
                             </motion.div>
                         </AnimatePresence>
                     </div>

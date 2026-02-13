@@ -101,7 +101,7 @@ const Contact = () => {
             />
 
             <p className="text-slate-800 text-base md:text-lg font-bold leading-relaxed font-premium text-right max-w-md drop-shadow-sm">
-              Explore bespoke industrial packaging with our 
+              Explore industrial packaging with our 
               global engineering team. We provide high-performance 
               solutions tailored to your supply chain requirements.
             </p>

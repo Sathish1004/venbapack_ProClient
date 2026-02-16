@@ -1,68 +1,113 @@
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, ChevronRight, ChevronLeft, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import CorrugatedImg from '../assets/corrugated.jpg';
+import WhatWeDoBg from '../assets/Quality3d.jpg';
 
 const About = () => {
-  // Left review cards data (rotates independently)
-  const leftReviews = [
-    {
-      name: "Lakshmi Industries",
-      role: "FMCG Client",
-      text: "VenbaPack provides high-quality, eco-friendly packaging that aligns perfectly with our brand values. Reliable and professional service."
-    },
-    {
-      name: "Arun Agro Foods",
-      role: "Agriculture Sector",
-      text: "Their packaging keeps our produce fresh and safe during transport. Excellent quality!"
-    },
-    {
-      name: "Kumar Exports",
-      role: "Food Supplier",
-      text: "Strong cartons and timely delivery. Very satisfied with VenbaPack."
-    }
-  ];
+const testimonials = [
+  {
+    name: "Lakshmi Industries",
+    type: "FMCG Client",
+    stars: 5,
+    text: "VenbaPack provides high-quality, eco-friendly packaging that aligns perfectly with our brand values. Reliable and professional service."
+  },
+  {
+    name: "Harish Traders",
+    type: "Retail Distributor",
+    stars: 5,
+    text: "Best quality corrugated boxes we have used so far. The durability is unmatched in the market."
+  },
+  {
+    name: "Sri Krishna Exports",
+    type: "Textile Partner",
+    stars: 5,
+    text: "Their specialized textile tubes are perfect. We've seen a 20% reduction in transit damage since switching."
+  },
+  {
+    name: "Global Logistics",
+    type: "Agri Exporter",
+    stars: 5,
+    text: "Efficient production and timely delivery. Their boxes withstand cross-border shipping perfectly."
+  }
+];
 
-  // Right review cards data (rotates independently)
-  const rightReviews = [
-    {
-      name: "Tech Electronics Ltd",
-      role: "Electronics Manufacturer",
-      text: "VenbaPack's custom packaging provides excellent protection for our sensitive products."
-    },
-    {
-      name: "Ramesh Kumar",
-      role: "Logistics Partner",
-      text: "Lightweight yet durable cartons have improved our shipping efficiency."
-    },
-    {
-      name: "Harish Traders",
-      role: "Retail Distributor",
-      text: "Best quality corrugated boxes we have used so far."
-    }
-  ];
+const formatBrandText = (text) => {
+  if (!text) return text;
+  const parts = text.split(/(VenbaPack)/g);
+  return parts.map((part, i) => 
+    part === "VenbaPack" ? <span key={i} className="venbapack-brand">VenbaPack</span> : part
+  );
+};
 
-  const [currentLeftIndex, setCurrentLeftIndex] = useState(0);
-  const [currentRightIndex, setCurrentRightIndex] = useState(0);
+const TestimonialCard = ({ offset }) => {
+  const [index, setIndex] = React.useState(offset % testimonials.length);
 
-  // Left card navigation
-  const handleLeftPrev = () => {
-    setCurrentLeftIndex((prev) => (prev === 0 ? leftReviews.length - 1 : prev - 1));
-  };
+  const next = () => setIndex((prev) => (prev + 1) % testimonials.length);
+  const prev = () => setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
-  const handleLeftNext = () => {
-    setCurrentLeftIndex((prev) => (prev === leftReviews.length - 1 ? 0 : prev + 1));
-  };
+  return (
+    <div className="bg-white rounded-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-50 p-8 md:p-12 flex flex-col items-center justify-center relative overflow-hidden w-full aspect-square max-w-[420px] group/card">
+      <div className="relative w-full h-full flex flex-col items-center justify-center">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -30 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="flex flex-col items-center text-center"
+          >
+            <div className="flex gap-1 mb-6">
+              {[...Array(testimonials[index].stars)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            
+            <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-1 font-premium uppercase tracking-tighter">
+              {testimonials[index].name}
+            </h4>
+            <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.2em] mb-8 opacity-80">
+              {testimonials[index].type}
+            </p>
+            
+            <p className="text-slate-600 italic leading-relaxed text-base md:text-lg px-2 line-clamp-4">
+              "{formatBrandText(testimonials[index].text)}"
+            </p>
+          </motion.div>
+        </AnimatePresence>
 
-  // Right card navigation
-  const handleRightPrev = () => {
-    setCurrentRightIndex((prev) => (prev === 0 ? rightReviews.length - 1 : prev - 1));
-  };
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <button 
+                onClick={(e) => { e.stopPropagation(); prev(); }} 
+                className="w-10 h-10 rounded-full bg-white shadow-lg border border-slate-100 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all pointer-events-auto active:scale-90"
+            >
+                <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button 
+                onClick={(e) => { e.stopPropagation(); next(); }} 
+                className="w-10 h-10 rounded-full bg-white shadow-lg border border-slate-100 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all pointer-events-auto active:scale-90"
+            >
+                <ChevronRight className="w-6 h-6" />
+            </button>
+        </div>
 
-  const handleRightNext = () => {
-    setCurrentRightIndex((prev) => (prev === rightReviews.length - 1 ? 0 : prev + 1));
-  };
+        <div className="absolute bottom-4 flex flex-col items-center gap-6">
+          <div className="flex gap-2.5">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                className={`transition-all duration-300 rounded-full ${index === i ? 'w-8 h-2.5 bg-blue-600' : 'w-2.5 h-2.5 bg-slate-200 hover:bg-slate-300'}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
   return (
     <div className="bg-white min-h-screen text-slate-900 pb-12 font-sans">
@@ -116,13 +161,13 @@ const About = () => {
           >
             {/* Heading */}
             <h2 className="text-[32px] md:text-[40px] font-bold text-[#0B1220] mb-8 text-center">
-              About VenbaPack Industries
+              About <span className="venbapack-brand">VenbaPack</span> Industries
             </h2>
 
             {/* Description Text */}
             <div className="space-y-6 text-[#4A5568] text-[18.5px] md:text-[18px] leading-[1.8] max-w-full mx-auto">
               <p>
-                Founded with a core focus on manufacturing excellence, <span className="font-bold text-[#0B1220]">VenbaPack Industries</span> has spent over a decade perfecting the art of industrial packaging. Our state-of-the-art facility in Coimbatore serves as the hub for precision engineering, where we transform raw materials into high-performance packaging solutions that protect your most valuable goods.
+                Founded with a core focus on manufacturing excellence, <span className="font-bold text-[#0B1220]"><span className="venbapack-brand">VenbaPack</span> Industries</span> has spent over a decade perfecting the art of industrial packaging. Our state-of-the-art facility in Coimbatore serves as the hub for precision engineering, where we transform raw materials into high-performance packaging solutions that protect your most valuable goods.
               </p>
 
               <p>
@@ -287,7 +332,7 @@ const About = () => {
             </h2>
             <div className="w-24 h-1 bg-[#1A73E8] mx-auto mb-6 rounded-full" />
             <p className="text-[17px] text-[#475569] max-w-3xl mx-auto leading-relaxed font-medium">
-              Seamless, secure, and efficient logistics to deliver VenbaPack packaging solutions across industries and borders.
+              Seamless, secure, and efficient logistics to deliver <span className="venbapack-brand">VenbaPack</span> packaging solutions across industries and borders.
             </p>
           </motion.div>
 
@@ -407,171 +452,53 @@ const About = () => {
         </div>
       </section>
 
-      {/* CUSTOMER REVIEWS SECTION */}
-      <section className="w-full bg-white py-14 relative overflow-hidden">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
-          <div className="absolute top-10 left-10 text-8xl">🌿</div>
-          <div className="absolute bottom-20 left-20 text-7xl">📦</div>
-          <div className="absolute top-1/3 right-10 text-6xl">🍃</div>
-        </div>
-
-        <div className="max-w-[1540px] mx-auto px-[2%] relative z-10">
-          
-          {/* Section Title with Animated Underline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0F7A3D] mb-3">
-              Customer Reviews
+      {/* --- TESTIMONIALS SECTION --- */}
+      <section className="py-20 bg-white overflow-hidden">
+        <div className="w-full px-[3%]">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight uppercase font-premium">
+              Customer <span className="text-blue-600">Reviews</span>
             </h2>
-            {/* Animated Underline */}
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: 100 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeIn", delay: 0.2 }}
-              className="h-[3px] bg-[#0F7A3D] mx-auto rounded-full"
-            />
-          </motion.div>
-
-          {/* 3-Column Layout: Left Card | Center Fixed Card | Right Card */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            
-            {/* LEFT REVIEW CARD (SLIDES INDEPENDENTLY) */}
-            <motion.div
-              key={`left-${currentLeftIndex}`}
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4 }}
-              className="group bg-white rounded-[14px] p-6 shadow-lg hover:-translate-y-[5px] hover:shadow-2xl hover:border-2 hover:border-[#1E5CFF] transition-all duration-300 border-2 border-transparent"
-            >
-              {/* Stars */}
-              <div className="flex gap-1 mb-3">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-yellow-400 text-lg">⭐</span>
-                ))}
-              </div>
-              
-              {/* Name */}
-              <h4 className="text-lg font-bold text-[#0B1633] mb-1">
-                {leftReviews[currentLeftIndex].name}
-              </h4>
-              <p className="text-sm text-[#1E5CFF] mb-4">{leftReviews[currentLeftIndex].role}</p>
-              
-              {/* Review Text */}
-              <p className="text-[#334155] text-[14px] leading-relaxed mb-6">
-                "{leftReviews[currentLeftIndex].text}"
-              </p>
-              
-              {/* Navigation Arrows - Only controls LEFT card */}
-              <div className="flex gap-3 justify-center">
-                <button 
-                  onClick={handleLeftPrev}
-                  className="w-9 h-9 rounded-full bg-[#1E5CFF] text-white flex items-center justify-center hover:bg-[#0B5ED7] transition-colors text-lg font-bold"
-                  aria-label="Previous left review"
-                >
-                  ◀
-                </button>
-                <button 
-                  onClick={handleLeftNext}
-                  className="w-9 h-9 rounded-full bg-[#1E5CFF] text-white flex items-center justify-center hover:bg-[#0B5ED7] transition-colors text-lg font-bold"
-                  aria-label="Next left review"
-                >
-                  ▶
-                </button>
-              </div>
-            </motion.div>
-
-            {/* CENTER FIXED CARD (NEVER MOVES OR CHANGES) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative rounded-[16px] overflow-hidden shadow-2xl h-[450px] flex items-center justify-center"
-            >
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <img 
-                   src="/custoemr review .jpg" 
-                   alt="VenbaPack Customer Review" 
-                   className="w-full h-full object-cover"
-                />
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/40" />
-              </div>
-              
-              {/* Content - FIXED, NEVER CHANGES */}
-              <div className="relative z-10 text-center px-8">
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
-                  Your feedback<br />is our strength!
-                </h3>
-                
-                {/* Stars */}
-                <div className="flex gap-2 justify-center mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-4xl">⭐</span>
-                  ))}
-                </div>
-                
-                <p className="text-white text-lg leading-relaxed">
-                  Share your experience<br />and help us grow.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* RIGHT REVIEW CARD (SLIDES INDEPENDENTLY) */}
-            <motion.div
-              key={`right-${currentRightIndex}`}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4 }}
-              className="group bg-white rounded-[14px] p-6 shadow-lg hover:-translate-y-[5px] hover:shadow-2xl hover:border-2 hover:border-[#1E5CFF] transition-all duration-300 border-2 border-transparent"
-            >
-              {/* Stars */}
-              <div className="flex gap-1 mb-3">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-yellow-400 text-lg">⭐</span>
-                ))}
-              </div>
-              
-              {/* Name */}
-              <h4 className="text-lg font-bold text-[#0B1633] mb-1">
-                {rightReviews[currentRightIndex].name}
-              </h4>
-              <p className="text-sm text-[#1E5CFF] mb-4">{rightReviews[currentRightIndex].role}</p>
-              
-              {/* Review Text */}
-              <p className="text-[#334155] text-[14px] leading-relaxed mb-6">
-                "{rightReviews[currentRightIndex].text}"
-              </p>
-              
-              {/* Navigation Arrows - Only controls RIGHT card */}
-              <div className="flex gap-3 justify-center">
-                <button 
-                  onClick={handleRightPrev}
-                  className="w-9 h-9 rounded-full bg-[#1E5CFF] text-white flex items-center justify-center hover:bg-[#0B5ED7] transition-colors text-lg font-bold"
-                  aria-label="Previous right review"
-                >
-                  ◀
-                </button>
-                <button 
-                  onClick={handleRightNext}
-                  className="w-9 h-9 rounded-full bg-[#1E5CFF] text-white flex items-center justify-center hover:bg-[#0B5ED7] transition-colors text-lg font-bold"
-                  aria-label="Next right review"
-                >
-                  ▶
-                </button>
-              </div>
-            </motion.div>
-
+            <div className="w-24 h-1.5 bg-blue-600 mx-auto mt-4 rounded-full" />
           </div>
 
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-7xl mx-auto">
+            
+            {/* Left Card: Slider 1 */}
+            <div className="hidden lg:flex justify-center">
+               <TestimonialCard offset={0} />
+            </div>
+
+            {/* Center: Static Image */}
+            <div className="order-first lg:order-none flex justify-center">
+                <div className="w-full max-w-[450px] aspect-square rounded-[40px] overflow-hidden shadow-2xl relative group">
+                    <img 
+                      src="/custoemr review .jpg" 
+                      alt="Feedback Center" 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 flex flex-col items-center justify-center text-center p-8">
+                        <h3 className="text-3xl md:text-4xl font-black text-white mb-6 uppercase leading-[1] font-premium">
+                          Your feedback <br /> is our strength!
+                        </h3>
+                        <div className="flex gap-1.5 mb-8">
+                            {[...Array(5)].map((_, i) => (
+                                <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400 drop-shadow-lg" />
+                            ))}
+                        </div>
+                        <p className="text-white/90 text-sm md:text-base font-bold uppercase tracking-widest max-w-[200px]">
+                          Share your experience and help us grow.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Right Card: Slider 2 */}
+            <div className="flex justify-center">
+               <TestimonialCard offset={1} />
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -601,7 +528,7 @@ const About = () => {
             className="bg-white rounded-[24px] shadow-[0px_10px_30px_rgba(0,0,0,0.08)] py-20 px-8 md:px-16 text-center w-full"
           >
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter leading-tight mb-6">
-              Your Packaging <span className="text-[#1E73FF]">Partner Awaits</span>
+            YOUR PACKAGING PARTNER <span className="text-[#1E73FF]">FOR EVERY CUSTOMER SEGMENT</span>
             </h2>
             
             <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8">

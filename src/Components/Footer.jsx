@@ -127,7 +127,7 @@ const Footer = () => {
                 {/* Bottom Bar - Copyright */}
                 <div className="border-t border-white/10 mt-16 pt-8 max-w-[95%] mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white text-[14px] font-medium opacity-80">
-                        <p>© {currentYear} VenbaPack Industry. All Rights Reserved.</p>
+                        <p>© {currentYear} <span className="venbapack-brand">VenbaPack</span> Industry. All Rights Reserved.</p>
                         <p>
                             Designed  and Developed by <a href="https://prolyncinfotech.in" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">prolync.in</a>
                         </p>

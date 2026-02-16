@@ -209,7 +209,7 @@ const Home = () => {
                  <br /> <span className="text-blue-600"></span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-100 mb-12 max-w-2xl mx-auto font-medium leading-relaxed font-premium opacity-95 drop-shadow-lg">
-              Industrial grade corrugated boxes, rolls and bespoke packaging for global enterprises.
+              Industrial grade corrugated boxes, rolls and packaging for global enterprises.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center mt-12">
               <Link to="/products" className="group px-12 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all shadow-2xl hover:shadow-blue-500/40 flex items-center justify-center gap-3 text-lg">
@@ -242,7 +242,7 @@ const Home = () => {
             className="text-center mb-10"
           >
             <h2 className="text-4xl lg:text-5xl font-black text-slate-900 uppercase tracking-tight mb-2">
-              VenbaPack <span className="text-[#1E90FF]">Industries</span>
+              <span className="venbapack-brand">VenbaPack</span> <span className="text-[#1E90FF]">Industries</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-[#1E90FF] to-slate-400 mx-auto rounded-full mt-4" />
           </motion.div>
@@ -276,7 +276,7 @@ const Home = () => {
                   
                   <div className="space-y-4 text-slate-700 text-[1.158rem] leading-relaxed font-medium">
                     <p>
-                      <span className="font-bold text-slate-900">VenbaPack Industries</span> — With over a decade of expertise, we have established ourselves as a premier provider of high-quality, reliable, and sustainable packaging solutions. Operating from our state-of-the-art manufacturing facility, we serve a global clientele with precision-engineered corrugated packaging and industrial-strength materials.
+                      <span className="font-bold text-slate-900"><span className="venbapack-brand">VenbaPack</span> Industries</span> — With over a decade of expertise, we have established ourselves as a premier provider of high-quality, reliable, and sustainable packaging solutions. Operating from our state-of-the-art manufacturing facility, we serve a global clientele with precision-engineered corrugated packaging and industrial-strength materials.
                     </p>
                     
                     <p>
@@ -615,39 +615,54 @@ const Home = () => {
         </div>
       </section>
 
+
+
       {/* --- CTA SECTION --- */}
-      <section className="w-full py-8 bg-white relative overflow-hidden flex items-center justify-center border-t border-slate-100">
-        <div className="max-w-6xl mx-auto px-8 text-center">
+      <section className="w-full py-20 relative overflow-hidden">
+        {/* Light Gradient Background with Subtle Packaging Image */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F7FAFF] to-white">
+          {/* Blurred Background Image */}
+          <div 
+            className="absolute inset-0 opacity-[0.12] blur-[10px]"
+            style={{
+              backgroundImage: `url(${CorrugatedImg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+        </div>
+
+        {/* Full Width Content Container */}
+        <div className="w-full px-[2.5%] relative z-10">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="space-y-10"
+            className="bg-white rounded-[24px] shadow-[0px_10px_30px_rgba(0,0,0,0.08)] py-20 px-8 md:px-16 text-center w-full"
           >
-            <h2 className="text-4xl md:text-7xl font-black text-slate-900 font-premium uppercase tracking-tighter leading-[0.9]">
-              Ready to Upgrade <br className="hidden md:block" />
-              Your <span className="text-blue-600">Packaging?</span>
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter leading-tight mb-6">
+            YOUR PACKAGING PARTNER <span className="text-[#1E73FF]">FOR EVERY CUSTOMER SEGMENT</span>
             </h2>
             
-            <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium opacity-80">
-              Partner with an industry leader committed to quality, sustainability, and innovative design. 
-              Let’s create the perfect solution for your products.
+            <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+              Partner with an industry leader committed to quality, sustainability, and innovation.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
               <Link 
-                to="/contact#send-message" 
-                className="w-full sm:w-auto px-10 py-4 bg-[#0B1C2D] text-white rounded-full font-bold text-base hover:bg-blue-700 transition-all shadow-[0_20px_40px_-15px_rgba(11,28,45,0.3)] flex items-center justify-center gap-3 group"
+                to="/contact" 
+                className="w-full sm:w-auto px-10 py-4 bg-[#1E73FF] text-white rounded-full font-semibold hover:bg-[#1557CC] transition-all shadow-lg flex items-center justify-center gap-3 group"
               >
                 Get a Quote <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               
               <Link 
                 to="/products" 
-                className="w-full sm:w-auto px-10 py-4 bg-transparent border-2 border-[#0B1C2D] text-[#0B1C2D] rounded-full font-bold text-base hover:bg-slate-50 transition-all flex items-center justify-center font-premium uppercase tracking-widest"
+                className="w-full sm:w-auto px-10 py-4 bg-transparent border-2 border-slate-800 text-slate-800 rounded-full font-semibold hover:bg-slate-50 transition-all flex items-center justify-center uppercase tracking-wider"
               >
-                EXPLORE PRODUCTS
+                Explore Products
               </Link>
             </div>
           </motion.div>
@@ -659,5 +674,7 @@ const Home = () => {
     </div>
   );
 };
+
+
 
 export default Home;

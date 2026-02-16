@@ -30,6 +30,13 @@ body {
   text-transform: uppercase;
 }
 
+.venbapack-brand {
+  font-family: 'Michroma', sans-serif;
+  font-weight: bold;
+  letter-spacing: -0.01em;
+  display: inline-block;
+}
+
 .font-sync {
   font-family: 'Syncopate', sans-serif;
   letter-spacing: 0.1em;
@@ -143,4 +150,74 @@ body {
 
 .animate-float-delayed {
   animation: float-delayed 8s ease-in-out infinite;
+}
+
+/* --- MOBILE RESPONSES (max-width: 768px) --- */
+@media screen and (max-width: 768px) {
+  /* Prevent horizontal scroll */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Typography Adjustments */
+  h1 { font-size: clamp(2.5rem, 8vw, 3.5rem) !important; line-height: 1.1 !important; }
+  h2 { font-size: clamp(2rem, 6vw, 2.5rem) !important; }
+  h3 { font-size: 1.5rem !important; }
+  p { font-size: 1rem !important; line-height: 1.6 !important; }
+
+  /* Hero Sections */
+  .h-screen { 
+    height: auto !important; 
+    min-height: 90vh !important; 
+    padding-top: 5rem !important; 
+    padding-bottom: 4rem !important; 
+  }
+  
+  .min-h-\[700px\] { min-height: 600px !important; }
+
+  /* Spacing & Layout */
+  .px-\[3\%\] { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+  .p-12, .p-16, .p-20 { padding: 1.5rem !important; }
+  .py-20, .py-24, .py-32 { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+  
+  /* Section Title Centering */
+  .text-right, .text-left { text-align: center !important; }
+  .items-start, .items-end { align-items: center !important; }
+  .justify-start, .justify-end { justify-content: center !important; }
+  
+  /* Fix for Contact Hero Content Position */
+  .relative.z-20.flex.items-center.justify-end { 
+    justify-content: center !important; 
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Navbar Adjustments */
+  .h-\[70px\] { height: 65px !important; }
+  .h-\[66px\] { height: 55px !important; }
+  
+  /* Border Radius for Mobile */
+  .rounded-\[32px\], .rounded-\[28px\], .rounded-\[24px\] { border-radius: 20px !important; }
+
+  /* Industry & Product Cards */
+  .min-h-\[600px\], .min-h-\[500px\] { min-height: auto !important; }
+  .h-\[300px\] { height: 250px !important; }
+  
+  /* Contact Page Specifics */
+  .h-\[60vh\], .h-\[75vh\] { height: auto !important; min-height: 400px !important; padding: 4rem 1rem !important; }
+  .bg-white\/10.backdrop-blur-\[2px\] { background-color: rgba(255, 255, 255, 0.8) !important; padding: 2rem 1rem !important; }
+
+  /* Responsive Images */
+  img { max-width: 100%; height: auto !important; }
+  
+  /* Flex/Grid Column Gaps */
+  .gap-16, .gap-12, .gap-8 { gap: 1.5rem !important; }
+}
+
+/* Extra Small Screens */
+@media screen and (max-width: 480px) {
+  h1 { font-size: 2.2rem !important; }
+  .p-8 { padding: 1rem !important; }
 }

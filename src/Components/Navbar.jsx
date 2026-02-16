@@ -20,50 +20,19 @@ import FinalLogo from '../assets/final_logo.jpeg';
 
 // --- TOP BAR COMPONENT ---
 const TopBar = () => {
-  const announcements = [
-    "Premium FMCG & FMDG packaging solutions",
-    "Custom corrugated boxes & industrial packaging",
-    "Trusted packaging partner for textile, agri & electrical industries"
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % announcements.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [announcements.length]);
-
   return (
-    <div className="bg-blue-900 text-white py-1.5 text-sm md:text-base font-medium relative z-50 shadow-md">
-      <div className="w-full flex justify-between items-center px-4 md:px-6">
+    <div className="bg-white text-[#00008B] py-1 text-sm md:text-base font-medium relative z-50 border-b border-slate-100">
+      <div className="w-full flex justify-end items-center px-4 md:px-6">
         
-        {/* Left Side: Sliding Announcement */}
-        <div className="flex-1 overflow-hidden h-6 relative flex items-center justify-start">
-           <AnimatePresence mode="wait">
-             <motion.div
-               key={currentIndex}
-               initial={{ y: 20, opacity: 0 }}
-               animate={{ y: 0, opacity: 1 }}
-               exit={{ y: -20, opacity: 0 }}
-               transition={{ duration: 0.5, ease: "easeInOut" }}
-               className="absolute left-0"
-             >
-               <span className="drop-shadow-md whitespace-nowrap font-premium text-[16px] tracking-wide font-medium">{announcements[currentIndex]}</span>
-             </motion.div>
-           </AnimatePresence>
-        </div>
-
         {/* Right Side: Contact Info */}
-        <div className="flex items-center gap-4 md:gap-6 text-white/90 shrink-0 font-premium text-[16px] tracking-wide font-medium">
-           <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-white transition-colors">
-              <Phone className="w-4 h-4" />
-              <span>+91 98765 43210</span>
+        <div className="flex items-center gap-4 md:gap-6 text-[#00008B] shrink-0 font-premium text-[15px] md:text-[16px] tracking-wide font-medium">
+           <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-blue-600 transition-colors">
+              <Phone className="w-4 h-4 text-[#00008B]" />
+              <span className="hidden xs:inline text-[#00008B]">+91 98765 43210</span>
            </a>
-           <a href="mailto:sales@venbapack.com" className="flex items-center gap-2 hover:text-white transition-colors flex">
-              <Mail className="w-4 h-4" />
-              <span className="lowercase">sales@venbapack.com</span>
+           <a href="mailto:sales@venbapack.com" className="hidden md:flex items-center gap-2 hover:text-blue-600 transition-colors">
+              <Mail className="w-4 h-4 text-[#00008B]" />
+              <span className="lowercase text-[#00008B]">sales@venbapack.com</span>
            </a>
         </div>
       </div>
@@ -88,7 +57,7 @@ const Navbar = () => {
       path: '/about',
     },
     {
-      name: 'Industries',
+      name: 'Business Sectors',
       path: '/industries',
       type: 'dropdown',
       items: [
@@ -111,14 +80,14 @@ const Navbar = () => {
       <TopBar />
       <nav className="bg-white border-b border-slate-100 shadow-sm relative z-40">
         <div className="w-full">
-          <div className="flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-[70px] px-4 sm:px-6 lg:px-8">
             
             {/* LOGO */}
             <Link to="/" className="flex-shrink-0 flex items-center justify-start bg-white">
                <img 
                   src="/VenbaPack_MainLogo.png" 
                   alt="Venbapack Logo" 
-                  className="h-[76px] w-auto object-contain"
+                  className="h-[66px] w-auto object-contain brightness-105 contrast-110 saturate-110"
                />
             </Link>
             
@@ -159,11 +128,10 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.98 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50"
-                        style={{ marginLeft: '-15px' }}
+                        className="absolute right-[-220px] lg:right-[-280px] top-full pt-3 z-50"
                       >
                          {/* --- INDUSTRIES MEGA MENU --- */}
-                         {item.name === 'Industries' && (
+                         {item.name === 'Business Sectors' && (
                             <div className="w-[850px] bg-white/98 backdrop-blur-xl rounded-[28px] shadow-[0px_10px_30px_rgba(0,0,0,0.08)] hover:shadow-[0px_15px_40px_rgba(0,0,0,0.12)] border border-white/40 overflow-hidden ring-1 ring-slate-900/5 transition-shadow duration-300 p-6">
                                <div className="flex">
                                   {/* Left: Featured Image / Context */}
@@ -208,10 +176,62 @@ const Navbar = () => {
               ))}
             </div>
 
+            {/* MOBILE MENU BUTTON */}
+            <div className="lg:hidden flex items-center">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 rounded-xl text-slate-700 hover:text-[#1E90FF] transition-colors bg-slate-50 border border-slate-100"
+              >
+                {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+              </button>
+            </div>
+
           </div>
         </div>
+
+        {/* MOBILE MENU PANEL */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, y: -10 }}
+              animate={{ opacity: 1, height: 'auto', y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="lg:hidden bg-white border-t border-slate-50 overflow-hidden shadow-xl"
+            >
+              <div className="px-6 py-8 space-y-4">
+                {menuItems.map((item) => (
+                  <div key={item.name} className="flex flex-col">
+                    <Link
+                      to={item.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`text-xl font-bold py-3 border-b border-slate-50 flex items-center justify-between ${
+                        location.pathname === item.path ? 'text-[#1E90FF]' : 'text-slate-800'
+                      }`}
+                    >
+                      {item.name}
+                      <ArrowRight className="w-5 h-5 opacity-30" />
+                    </Link>
+                  </div>
+                ))}
+                
+                {/* Mobile Contact Button Upgrade */}
+                <div className="pt-4">
+                  <Link
+                    to="/contact"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full block text-center bg-[#00008B] text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-900/20 active:scale-95 transition-transform"
+                  >
+                    Quick Quote
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </div>
+
   );
 };
 

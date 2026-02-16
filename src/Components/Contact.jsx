@@ -212,7 +212,7 @@ const Contact = () => {
                     </div>
                     <h4 className="text-2xl font-bold text-slate-900">Message Sent Successfully!</h4>
                     <p className="text-slate-600 max-w-sm">
-                      Thank you for contacting VenbaPack. We have received your inquiry and will get back to you within 24 hours.
+                      Thank you for contacting <span className="venbapack-brand">VenbaPack</span>. We have received your inquiry and will get back to you within 24 hours.
                     </p>
                     <button 
                       onClick={() => setIsSubmitted(false)}

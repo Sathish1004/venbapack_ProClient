@@ -118,9 +118,9 @@ const Home = () => {
     },
     { 
        id: 4, 
-       name: "Bundle Bags", 
-       desc: "Heavy-duty raffia grade", 
-       img: FMCGNewImg, 
+       name: "PP Woven Sacks", 
+       desc: "High-strength PP grade", 
+       img: "/left_right_hd_cropped.jpg", 
        icon: ShoppingBag 
     },
   ];
@@ -464,7 +464,7 @@ const Home = () => {
               { name: "Corrugated Boxes", video: "/Corrugated_box...mp4" },
               { name: "Corrugated Rolls & Sheets", video: "/corrugater rollsheet.mp4" },
               { name: "Die Cut Boxes", video: "/packagingfood_3.mp4" },
-              { name: "Raffia Grade Bundle Bags", video: "/Packaging_vid1.mp4" },
+              { name: "PP Woven Sacks", video: "/Packaging_vid1.mp4" },
               { name: "Gum Tapes", video: "/Gum_Tap.mp4" },
               { name: "Box Straps", video: "/Box_Strape.mp4" },
               { name: "Strapping Tools", video: "/strappingtools.mp4" },

@@ -13,7 +13,6 @@ import ElectricalImg from '../assets/Electronics .jpg';
 import CorrugatedImg from '../assets/corrugated.jpg';
 import RolledBoxImg from '../assets/Rolledbox.jpg';
 import DieCutImg from '../assets/Die_Cut.jpg';
-import RaffiaImg from '../assets/raffiabags.png';
 import AccessoryImg from '../assets/BoxesAccesarieos.jpg';
 import MenuBg from '../assets/mainbackside.jpg';
 import FinalLogo from '../assets/final_logo.jpeg';

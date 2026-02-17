@@ -38,10 +38,10 @@ const Products = () => {
       img: "/die_cutout.png",
     },
     {
-      id: "raffia-bags",
-      title: "Raffia Grade Bundle Bags",
-      desc: "High-strength woven bags for industrial bulk storage and transport of agricultural and textile products. These moisture-resistant bags handle heavy weights with ease and absolute security, featuring reinforced stitching and UV-stabilized materials that ensure long-lasting durability in demanding outdoor and warehouse environments.",
-      img: "/raffiaoutc.png",
+      id: "pp-woven-sacks",
+      title: "PP Woven Sacks",
+      desc: "Durable and high-strength Polypropylene (PP) woven sacks engineered for bulk packaging of industrial, agricultural, and construction materials. These moisture-resistant and tear-proof bags offer superior weight capacity and reliable protection, making them ideal for long-duration storage and global shipping demands.",
+      img: "/left_right_hd_cropped.jpg",
     },
     {
       id: "gum-tapes",
@@ -66,6 +66,12 @@ const Products = () => {
       title: "Bundle Stitching Ropes & Tools",
       desc: "Premium nylon and cotton ropes for reliable bundle security and traditional packaging methods. These high-strength solutions ensure tight closures during long-distance industrial transport, offering excellent knot retention and abrasion resistance that withstands rough handling while maintaining bundle integrity across diverse shipping conditions.",
       img: "/outbundele.png",
+    },
+    {
+      id: "box-strapping-tools",
+      title: "Box Strapping Tools",
+      desc: "High-performance box strapping tools designed for fast, secure, and efficient packaging operations. These tools provide consistent tensioning and sealing for polypropylene and polyester straps, ensuring strong load stability, reduced manual effort, and improved productivity in industrial and warehouse applications.",
+      img: "/box-strapping_HD.jpg",
     },
   ];
 
@@ -210,7 +216,7 @@ const Products = () => {
             </motion.div>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-[24px] items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
             {allProducts.map((prod) => (
               <motion.div
                 key={prod.id}
@@ -218,7 +224,7 @@ const Products = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.3333%-16px)] bg-white rounded-[16px] shadow-[0px_4px_12px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col group hover:shadow-[0px_10px_30px_rgba(0,0,0,0.12)] transition-all duration-500 border border-slate-100"
+                className="w-full bg-white rounded-[16px] shadow-[0px_4px_12px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col group hover:shadow-[0px_10px_30px_rgba(0,0,0,0.12)] transition-all duration-500 border border-slate-100"
               >
                 <div className="h-[225px] w-full overflow-hidden shrink-0">
                    <img 

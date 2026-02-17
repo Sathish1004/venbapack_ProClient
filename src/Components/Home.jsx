@@ -458,8 +458,8 @@ const Home = () => {
             </p>
           </motion.div>
 
-          {/* Product Grid: 2 Rows x 4 Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+          {/* Product Grid: 3 Rows x 3 Columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { name: "Corrugated Boxes", video: "/Corrugated_box...mp4" },
               { name: "Corrugated Rolls & Sheets", video: "/corrugater rollsheet.mp4" },
@@ -468,7 +468,8 @@ const Home = () => {
               { name: "Gum Tapes", video: "/Gum_Tap.mp4" },
               { name: "Box Straps", video: "/Box_Strape.mp4" },
               { name: "Strapping Tools", video: "/strappingtools.mp4" },
-              { name: "Bundle Stitching Ropes & Tools", video: "/BundleRopped.mp4" }
+              { name: "Bundle Stitching Ropes & Tools", video: "/BundleRopped.mp4" },
+              { name: "Box Strapping Tools", video: "/strappingtools.mp4" }
             ].map((product, idx) => (
               <motion.div
                 key={idx}
@@ -476,7 +477,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.6 }}
-                className="bg-white rounded-[32px] overflow-hidden shadow-2xl border border-slate-100 group flex flex-col h-full relative"
+                className="bg-white rounded-[20px] overflow-hidden shadow-2xl border border-slate-100 group flex flex-col h-full relative"
                 style={{ filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.05))' }}
               >
                 {/* Top Area: Seamless Video area */}
@@ -519,7 +520,7 @@ const Home = () => {
                 </div>
 
                 {/* Card Edge Reveal */}
-                <div className="absolute inset-0 rounded-[32px] border border-white/10 pointer-events-none z-30" />
+                <div className="absolute inset-0 rounded-[20px] border border-white/10 pointer-events-none z-30" />
               </motion.div>
             ))}
           </div>

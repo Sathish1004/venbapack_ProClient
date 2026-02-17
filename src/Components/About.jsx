@@ -238,8 +238,7 @@ const TestimonialCard = ({ offset }) => {
                     Our Vision
                   </h3>
                   <p className="text-[#334155] text-[15px] leading-relaxed text-left">
-                    To become a globally trusted leader in sustainable and innovative packaging solutions, 
-                    empowering businesses with durable, eco-conscious, and high-performance industrial packaging.
+                    To lead the industry in sustainable packaging through innovation, quality, and global excellence.
                   </p>
                 </motion.div>
 
@@ -266,8 +265,7 @@ const TestimonialCard = ({ offset }) => {
                     Our Mission
                   </h3>
                   <p className="text-[#334155] text-[15px] leading-relaxed text-left">
-                    To deliver high-quality, cost-effective, and environmentally responsible packaging solutions 
-                    that enhance product safety, branding, and operational efficiency for our clients.
+                    To provide high-quality, eco-friendly packaging that ensures product safety and operational efficiency.
                   </p>
                 </motion.div>
 
@@ -294,9 +292,7 @@ const TestimonialCard = ({ offset }) => {
                     Core Values
                   </h3>
                   <p className="text-[#334155] text-[15px] leading-relaxed text-left">
-                    We are guided by quality and precision in manufacturing, sustainability and eco responsibility, 
-                    innovation in packaging design, a customer-centric approach, and unwavering reliability and trust 
-                    in everything we do.
+                    Excellence in manufacturing, sustainability, innovation, and trust in every partnership.
                   </p>
                 </motion.div>
               </div>

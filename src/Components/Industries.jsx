@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 // Asset Imports
@@ -8,197 +8,141 @@ import FMCGImg from '../assets/FMCG.jpg';
 import FMDGImg from '../assets/FMDG.jpg';
 import ElectricalImg from '../assets/Electronics .jpg';
 
+const industries = [
+    { id: 'textile', title: 'Textile Industry', img: TextileImg },
+    { id: 'agri', title: 'Agri Industry', img: AgriImg },
+    { id: 'fmcg', title: 'FMCG', img: FMCGImg },
+    { id: 'fmdg', title: 'FMDG', img: FMDGImg },
+    { id: 'electrical', title: 'Electrical Products', img: ElectricalImg },
+];
+
 const Industries = () => {
-    const [hoveredId, setHoveredId] = useState(null);
-
-    const industries = [
-        {
-            id: 'textile',
-            title: 'Textile Industry',
-            img: TextileImg,
-        },
-        {
-            id: 'agri',
-            title: 'Agri Industry',
-            img: AgriImg,
-        },
-        {
-            id: 'fmcg',
-            title: 'FMCG',
-            img: FMCGImg,
-        },
-        {
-            id: 'fmdg',
-            title: 'FMDG',
-            img: FMDGImg,
-        },
-        {
-            id: 'electrical',
-            title: 'Electrical Products',
-            img: ElectricalImg,
-        },
-    ];
-
-    // Perfect curved arc positioning with equal spacing
-    const curvePositions = [
-        { top: '50%', left: '8%' },     // Textile (Left)
-        { top: '20%', left: '23%' },    // Agri (Left-Top)
-        { top: '8%', left: '50%', transform: 'translateX(-50%)' },  // FMCG (Center Top)
-        { top: '20%', right: '23%' },   // FMDG (Right-Top)
-        { top: '50%', right: '8%' },    // Electrical (Right)
+    // Symmetrical Curve Layout (5 items)
+    // Values calculated for a 1400px+ width to ensure perfectly equal gaps
+    const positions = [
+        { left: '10%', top: '250px', transform: 'translateX(-50%)' },
+        { left: '30%', top: '85px', transform: 'translateX(-50%)' },
+        { left: '50%', top: '30px', transform: 'translateX(-50%)' },
+        { left: '70%', top: '85px', transform: 'translateX(-50%)' },
+        { left: '90%', top: '250px', transform: 'translateX(-50%)' },
     ];
 
     return (
-        <div className="bg-gradient-to-b from-slate-50 via-white to-slate-50 min-h-screen text-slate-900 pt-32 pb-32 font-sans relative overflow-hidden">
+        <section id="sectors" className="relative w-full py-24 pb-40 overflow-hidden bg-white font-sans">
             
             {/* --- PREMIUM BACKGROUND --- */}
-            <div className="absolute inset-0 z-0">
-                <div 
-                    className="absolute inset-0 opacity-[0.04] blur-[6px]"
-                    style={{ 
-                        backgroundImage: `url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                    }}
+            {/* Soft Light Gradient */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-blue-50/40 via-white to-slate-50/50"></div>
+            
+            {/* Subtle World Map Texture */}
+            <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none overflow-hidden flex items-center justify-center">
+                <img 
+                   src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg" 
+                   alt="" 
+                   className="w-[110%] h-auto grayscale brightness-0 select-none"
                 />
-                <div className="absolute top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-blue-100/20 rounded-full blur-[150px] pointer-events-none" />
             </div>
+            
+            {/* Radial glow for center balance */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-blue-100/20 rounded-full blur-[120px] pointer-events-none" />
 
-            <div className="max-w-[1600px] mx-auto px-6 relative z-10">
+            <div className="max-w-[1500px] mx-auto px-6 relative z-10">
                 
                 {/* --- HEADER --- */}
                 <div className="text-center mb-24">
-                    <motion.span 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-orange-500 font-bold tracking-[0.3em] uppercase text-xs mb-3 block"
+                    <motion.h2 
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                        className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#002B5B] mb-6 tracking-tight font-premium"
                     >
-                        Our Business Sectors
-                    </motion.span>
-                    <motion.h1 
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.7, ease: "easeOut" }}
-                        className="text-5xl md:text-7xl font-black text-slate-900 mb-4 tracking-tight"
-                    >
-                        Smart Packaging <br className="hidden md:block" />
-                        <span className="text-blue-900">For Every Industry</span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                        className="text-slate-600 text-lg max-w-2xl mx-auto"
+                        Smart Packaging for Every Industry
+                    </motion.h2>
+                    <motion.p 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                        className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed"
                     >
                         Explore our specialized packaging solutions, carefully crafted for diverse industries with precision, durability, and innovation.
                     </motion.p>
                 </div>
 
-                {/* --- CURVED INDUSTRY SELECTOR (STATIC) --- */}
-                <div className="relative min-h-[500px] flex items-center justify-center">
-                    
-                    {/* Decorative Curve Line */}
-                    <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none" viewBox="0 0 1200 600">
+                {/* --- CURVED INDUSTRY LAYOUT (DESKTOP) --- */}
+                <div className="relative h-[420px] w-full mt-12 hidden lg:block">
+                    {/* Decorative Curve Line (Subtle) */}
+                    <svg className="absolute inset-0 w-full h-full opacity-[0.08] pointer-events-none" viewBox="0 0 1400 400">
                         <path
-                            d="M 150 350 Q 350 120, 600 80 T 1050 350"
-                            stroke="#00008B"
-                            strokeWidth="3"
+                            d="M 140 250 Q 700 -190 1260 250"
+                            stroke="#002B5B"
+                            strokeWidth="2"
                             fill="none"
-                            strokeDasharray="10 10"
+                            strokeDasharray="8 8"
                         />
                     </svg>
 
-                    {/* OVAL INDUSTRY CARDS (DESKTOP) */}
-                    <div className="hidden lg:block absolute inset-0">
-                        {industries.map((ind, idx) => {
-                            const pos = curvePositions[idx];
-                            const isHovered = hoveredId === ind.id;
+                    {industries.map((ind, idx) => (
+                        <motion.div
+                            key={ind.id}
+                            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                            transition={{ 
+                                delay: idx * 0.12, 
+                                duration: 0.8, 
+                                ease: [0.21, 1.02, 0.73, 0.99] 
+                            }}
+                            viewport={{ once: true }}
+                            className="absolute z-20"
+                            style={positions[idx]}
+                        >
+                            <div className="group relative w-[260px] h-[140px] rounded-full overflow-hidden shadow-2xl transition-all duration-500 cursor-default border-4 border-white backdrop-blur-sm hover:scale-105 hover:shadow-[0_20px_50px_rgba(59,130,246,0.25)] ring-1 ring-slate-200">
+                                {/* Background Image */}
+                                <img 
+                                    src={ind.img} 
+                                    alt={ind.title}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                                
+                                {/* Dark Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/40 to-black/70 transition-opacity duration-300" />
 
-                            return (
-                                <motion.div
-                                    key={ind.id}
-                                    onMouseEnter={() => setHoveredId(ind.id)}
-                                    onMouseLeave={() => setHoveredId(null)}
-                                    className="absolute cursor-pointer group"
-                                    style={pos}
-                                    initial={{ opacity: 0, y: 30, scale: 0.85 }}
-                                    animate={{ 
-                                        opacity: 1, 
-                                        y: 0,
-                                        scale: 1
-                                    }}
-                                    transition={{ delay: idx * 0.12, duration: 0.6, ease: "backOut" }}
-                                    whileHover={{ scale: 1.05, y: -8 }}
-                                >
-                                    {/* HORIZONTAL OVAL CARD */}
-                                    <div className={`
-                                        w-[260px] h-[140px] rounded-full overflow-hidden relative transition-all duration-500
-                                        ${isHovered 
-                                            ? 'ring-[5px] ring-orange-500 shadow-[0_0_50px_rgba(249,115,22,0.45)]' 
-                                            : 'ring-[3px] ring-white shadow-2xl'
-                                        }
-                                    `}>
-                                        {/* Background Image */}
-                                        <img 
-                                            src={ind.img} 
-                                            alt={ind.title}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        />
-                                        
-                                        {/* Gradient Overlay */}
-                                        <div className={`
-                                            absolute inset-0 transition-all duration-500 flex items-center justify-center
-                                            ${isHovered 
-                                                ? 'bg-gradient-to-br from-orange-500/40 via-orange-600/30 to-blue-900/40' 
-                                                : 'bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70'
-                                            }
-                                        `} />
-
-                                        {/* Industry Name */}
-                                        <div className="absolute inset-0 flex items-center justify-center text-center px-6">
-                                            <h3 className="text-white font-black text-xl leading-tight tracking-tight">
-                                                {ind.title}
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
-                    </div>
-
-                    {/* MOBILE: Horizontal Scroll Ovals */}
-                    <div className="lg:hidden flex gap-4 px-6 overflow-x-auto no-scrollbar pb-6 w-full">
-                        {industries.map((ind, idx) => (
-                            <motion.div 
-                                key={ind.id}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: idx * 0.1 }}
-                                className="shrink-0 w-[220px] h-[120px] rounded-full overflow-hidden relative cursor-pointer ring-[3px] ring-white shadow-xl hover:ring-orange-400 transition-all duration-300 group"
-                            >
-                                <img src={ind.img} alt={ind.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                                <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70 group-hover:from-orange-500/40 group-hover:via-orange-600/30 group-hover:to-blue-900/40 transition-all duration-500 flex items-center justify-center">
-                                    <h3 className="text-white font-black text-base text-center px-4">{ind.title}</h3>
+                                {/* Industry Name */}
+                                <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
+                                    <h3 className="text-white font-bold text-xl md:text-2xl tracking-wide">
+                                        {ind.title}
+                                    </h3>
                                 </div>
-                            </motion.div>
-                        ))}
-                    </div>
 
+                                {/* Hover Glow Effect */}
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-blue-500/20 via-transparent to-transparent pointer-events-none" />
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* --- RESPONSIVE LAYOUT (TABLET/MOBILE) --- */}
+                <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+                    {industries.map((ind, idx) => (
+                        <motion.div 
+                            key={ind.id}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: idx * 0.1 }}
+                            viewport={{ once: true }}
+                            className="relative w-full h-[140px] rounded-full overflow-hidden border-4 border-white shadow-xl group"
+                        >
+                            <img src={ind.img} alt={ind.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div className="absolute inset-0 bg-black/60 flex items-center justify-center p-6 text-center">
+                                <h3 className="text-white font-bold text-xl">{ind.title}</h3>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
 
             </div>
-
-            {/* Custom Styles */}
-            <style jsx>{`
-                .no-scrollbar::-webkit-scrollbar {
-                    display: none;
-                }
-                .no-scrollbar {
-                    -ms-overflow-style: none;
-                    scrollbar-width: none;
-                }
-            `}</style>
-        </div>
+        </section>
     );
 };
 

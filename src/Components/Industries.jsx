@@ -99,6 +99,7 @@ const industries = [
 
 const Industries = () => {
     const [activeId, setActiveId] = useState('textile');
+    const [currentWhySlide, setCurrentWhySlide] = useState(0);
     const detailRef = useRef(null);
     const location = useLocation();
 
@@ -202,15 +203,20 @@ const Industries = () => {
 
                 {/* --- OVERLAPPING INDUSTRY CARDS CONTAINER --- */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full max-w-[1400px] px-6 z-20 hidden lg:block">
-                    <div className="relative bg-white/90 backdrop-blur-xl rounded-[40px] shadow-[0_30px_80px_rgba(0,0,0,0.12)] border border-white/60 p-12 min-h-[500px]">
+                    <div className="relative bg-gradient-to-br from-slate-50 to-white rounded-[40px] shadow-[0_30px_80px_rgba(0,0,0,0.08)] border border-slate-100 p-12 py-16">
                         
-                        {/* Curved Industry Cards Layout */}
-                        <div className="relative h-[480px] w-full">
+                        {/* Optional Center Title */}
+                        <div className="absolute top-6 left-1/2 -translate-x-1/2 text-center">
+                            <p className="text-slate-400 text-xs font-bold uppercase tracking-[0.3em]">Industries We Serve</p>
+                        </div>
+
+                        {/* Curved Industry Cards Layout with Arrows & Descriptions */}
+                        <div className="relative h-[500px] w-full">
                             
-                            {/* Curved Dashed Path */}
-                            <svg className="absolute inset-0 w-full h-full opacity-[0.08] pointer-events-none" viewBox="0 0 1400 480" preserveAspectRatio="none">
+                            {/* Curved Dashed Path (Decorative Background Only) */}
+                            <svg className="absolute inset-0 w-full h-full opacity-[0.06] pointer-events-none" viewBox="0 0 1400 500" preserveAspectRatio="none">
                                 <path
-                                    d="M 100 380 Q 700 -80 1300 380"
+                                    d="M 100 350 Q 700 50 1300 350"
                                     stroke="#001F3F"
                                     strokeWidth="2"
                                     fill="none"
@@ -218,25 +224,35 @@ const Industries = () => {
                                 />
                             </svg>
 
-                            {/* Industry Cards */}
+                            {/* Industry Cards with Vertical Layout: Card → Arrow → Text */}
                             {industries.map((ind, idx) => {
-                                const cardPositions = [
-                                    { left: '5%', top: '320px' },
-                                    { left: '22%', top: '160px' },
-                                    { left: '42%', top: '60px' },
-                                    { left: '62%', top: '160px' },
-                                    { left: '79%', top: '320px' },
+                                const isActive = activeId === ind.id;
+                                const descriptions = [
+                                    { title: "Secure export packaging", subtitle: "for bulk shipments" },
+                                    { title: "Moisture-controlled cartons", subtitle: "for fresh produce" },
+                                    { title: "High-speed packaging flow", subtitle: "for retail distribution" },
+                                    { title: "Heavy-duty corrugated boxes", subtitle: "for industrial transport" },
+                                    { title: "Shock-proof precision packing", subtitle: "for sensitive equipment" }
                                 ];
                                 
+                                // Vertical positioning for each card group
+                                const cardPositions = [
+                                    { left: '10%', top: '280px' },  // Textile - bottom-left
+                                    { left: '25%', top: '140px' },  // Agri - upper-left (moved right)
+                                    { left: '43%', top: '40px' },   // FMCG - top-center (hero)
+                                    { left: '61%', top: '140px' },  // FMDG - upper-right (moved left)
+                                    { left: '76%', top: '280px' }   // Electrical - bottom-right
+                                ];
+
                                 return (
                                     <motion.div
                                         key={ind.id}
                                         id={ind.id}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        transition={{ delay: idx * 0.1, duration: 0.6, ease: "easeOut" }}
+                                        initial={{ opacity: 0, y: 40 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: idx * 0.1, duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
                                         viewport={{ once: true }}
-                                        className="absolute z-10 scroll-mt-32"
+                                        className="absolute z-20 scroll-mt-32 flex flex-col items-center"
                                         style={{ 
                                             left: cardPositions[idx].left, 
                                             top: cardPositions[idx].top,
@@ -245,78 +261,43 @@ const Industries = () => {
                                         onMouseEnter={() => setActiveId(ind.id)}
                                         onClick={() => handleIndustryClick(ind.id)}
                                     >
-                                        <div className={`group relative w-[200px] h-[110px] rounded-full overflow-hidden shadow-lg transition-all duration-500 cursor-pointer border-[3px] ${activeId === ind.id ? 'border-blue-600 scale-110' : 'border-white'} hover:scale-105 hover:shadow-xl`}>
+                                        {/* Card */}
+                                        <div className={`relative w-[200px] h-[110px] rounded-full overflow-hidden shadow-xl transition-all duration-500 cursor-pointer border-[4px] ${isActive ? 'border-blue-600 scale-110 shadow-blue-200' : 'border-white'} backdrop-blur-[2px] hover:scale-105 hover:shadow-2xl hover:border-blue-400 ring-1 ring-slate-100/50 mb-3`}>
                                             <img src={ind.img} alt={ind.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/60" />
-                                            <div className="absolute inset-0 flex items-center justify-center p-3 text-center">
-                                                <h3 className="text-white font-bold text-sm tracking-wide leading-tight drop-shadow-lg">{ind.title}</h3>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 opacity-100 transition-opacity duration-300" />
+                                            <div className="absolute inset-0 flex items-center justify-center p-4 text-center">
+                                                <h3 className="text-white font-bold text-sm tracking-wide px-4 leading-tight drop-shadow-md">{ind.title}</h3>
                                             </div>
+                                        </div>
+
+                                        {/* Downward Arrow */}
+                                        <svg 
+                                            className="w-6 h-6 mb-2 transition-all duration-300"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M12 4 L12 18 M12 18 L8 14 M12 18 L16 14"
+                                                stroke={isActive ? "#2563eb" : "#cbd5e1"}
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                className="transition-all duration-300 group-hover:stroke-blue-600"
+                                            />
+                                        </svg>
+
+                                        {/* Text Description (Vertical Group) */}
+                                        <div className={`text-center max-w-[160px] transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-70 hover:opacity-100'}`}>
+                                            <p className={`text-xs font-semibold leading-tight mb-1 ${isActive ? 'text-slate-800' : 'text-slate-600'} transition-all duration-300`}>
+                                                {descriptions[idx].title}
+                                            </p>
+                                            <p className="text-xs text-slate-400 leading-tight">
+                                                {descriptions[idx].subtitle}
+                                            </p>
                                         </div>
                                     </motion.div>
                                 );
                             })}
-
-                            {/* CENTER GLASSMORPHISM CONTENT BLOCK */}
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: 0.3 }}
-                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-[520px]"
-                            >
-                                <div className="relative bg-white/95 backdrop-blur-2xl rounded-[32px] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.15)] border border-white/80 hover:shadow-[0_25px_70px_rgba(0,0,0,0.2)] transition-all duration-500">
-                                    
-                                    {/* Top Icon */}
-                                    <div className="flex justify-center mb-4">
-                                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-3xl shadow-lg">
-                                            🌐
-                                        </div>
-                                    </div>
-
-                                    {/* Heading */}
-                                    <h3 className="text-2xl font-black text-[#001F3F] text-center mb-3 leading-tight">
-                                        Integrated Logistics & <br />Packaging Solutions
-                                    </h3>
-
-                                    {/* Description */}
-                                    <p className="text-slate-600 text-sm text-center leading-relaxed mb-6">
-                                        We deliver end-to-end packaging and logistics support tailored for diverse industries. From lightweight retail distribution to heavy industrial transport, our solutions ensure safety, speed, and reliability.
-                                    </p>
-
-                                    {/* 5 Highlight Points - 2 Column Layout */}
-                                    <div className="grid grid-cols-1 gap-3">
-                                        {[
-                                            { icon: '👔', title: 'Textile', desc: 'Export-ready carton structuring' },
-                                            { icon: '🌾', title: 'Agri', desc: 'Ventilated & moisture-controlled boxes' },
-                                            { icon: '🛒', title: 'FMCG', desc: 'High-volume rapid packaging systems' },
-                                            { icon: '📦', title: 'FMDG', desc: 'Reinforced heavy-load protection' },
-                                            { icon: '⚡', title: 'Electrical', desc: 'Anti-static & shock-safe packaging' }
-                                        ].map((item, idx) => (
-                                            <motion.div 
-                                                key={idx}
-                                                initial={{ opacity: 0, x: -10 }}
-                                                whileInView={{ opacity: 1, x: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ delay: 0.5 + (idx * 0.1) }}
-                                                className="flex items-center gap-3 group/item"
-                                            >
-                                                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-base shrink-0 group-hover/item:scale-110 transition-transform">
-                                                    {item.icon}
-                                                </div>
-                                                <div className="flex-1">
-                                                    <p className="text-xs font-bold text-[#001F3F] leading-tight">
-                                                        <span className="text-blue-600">{item.title}</span> – {item.desc}
-                                                    </p>
-                                                </div>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-
-                                    {/* Decorative Corner Accents */}
-                                    <div className="absolute top-3 right-3 w-12 h-12 border-t-2 border-r-2 border-blue-200 rounded-tr-2xl opacity-40" />
-                                    <div className="absolute bottom-3 left-3 w-12 h-12 border-b-2 border-l-2 border-blue-200 rounded-bl-2xl opacity-40" />
-                                </div>
-                            </motion.div>
                         </div>
                     </div>
                 </div>
@@ -338,7 +319,7 @@ const Industries = () => {
                             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                             className="w-full flex flex-col lg:flex-row rounded-[32px] md:rounded-[50px] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.15)] border-[8px] md:border-[12px] border-white min-h-[500px] md:min-h-[600px] relative bg-white"
                         >
-                            {/* LEFT SIDE: CREATIVE DARK THEME IMAGE UI */}
+                            {/* LEFT SIDE: IMAGE CAROUSEL WITH LAYERED CARDS */}
                             <div className="w-full lg:w-[55%] bg-[#0A111F] relative p-8 md:p-12 overflow-hidden flex items-center justify-center min-h-[400px] md:min-h-auto">
                                 {/* Subtle Animated Background Glows */}
                                 <div className="absolute inset-0 z-0">
@@ -346,46 +327,81 @@ const Industries = () => {
                                     <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-indigo-600/20 blur-[120px] rounded-full" />
                                 </div>
 
-                                {/* STAGGERED 3-IMAGE LAYOUT */}
+                                {/* STACKED CARD CAROUSEL WITH Z-AXIS SWAP ANIMATION */}
                                 <div className="relative w-full h-[300px] md:h-[450px] max-w-[600px] z-10 flex items-center justify-center">
-                                    {/* Image 3 (Bottom Layer / Back) */}
-                                    <motion.div 
-                                        initial={{ opacity: 0, rotate: -5, x: 20 }}
-                                        animate={{ opacity: 1, rotate: -8, x: 0 }}
-                                        transition={{ delay: 0.3 }}
-                                        className="absolute top-[10%] left-[5%] w-[60%] md:w-[65%] h-[60%] md:h-[70%] rounded-[24px] md:rounded-[32px] overflow-hidden border-4 border-white/5 shadow-2xl grayscale-[0.2]"
-                                    >
-                                        <img src={activeIndustry.images[2]} className="w-full h-full object-cover" alt="" />
-                                        <div className="absolute inset-0 bg-black/20" />
-                                    </motion.div>
+                                    {/* Calculate indices for 3 visible cards */}
+                                    {[2, 1, 0].map((offset) => {
+                                        const imageIndex = (currentWhySlide + offset) % activeIndustry.images.length;
+                                        const isActive = offset === 0;
+                                        const isSecondary = offset === 1;
+                                        const isBackground = offset === 2;
 
-                                    {/* Image 2 (Middle Layer) */}
-                                    <motion.div 
-                                        initial={{ opacity: 0, scale: 0.9, x: -20 }}
-                                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                                        transition={{ delay: 0.2 }}
-                                        className="absolute bottom-[5%] right-[5%] w-[55%] md:w-[60%] h-[55%] md:h-[65%] rounded-[24px] md:rounded-[32px] overflow-hidden border-4 border-white/10 shadow-2xl"
-                                    >
-                                        <img src={activeIndustry.images[1]} className="w-full h-full object-cover" alt="" />
-                                        <div className="absolute inset-0 bg-black/10" />
-                                    </motion.div>
+                                        return (
+                                            <motion.div
+                                                key={`${activeId}-${imageIndex}-${offset}`}
+                                                initial={false}
+                                                animate={{
+                                                    scale: isActive ? 1.02 : isSecondary ? 0.95 : 0.88,
+                                                    x: isActive ? '20%' : isSecondary ? '5%' : '-5%',
+                                                    y: isActive ? '15%' : isSecondary ? '5%' : '10%',
+                                                    rotate: isActive ? 0 : isSecondary ? -3 : -8,
+                                                    opacity: isActive ? 1 : isSecondary ? 0.9 : 0.6,
+                                                    zIndex: isActive ? 30 : isSecondary ? 20 : 10
+                                                }}
+                                                transition={{
+                                                    duration: 0.5,
+                                                    ease: [0.23, 1, 0.32, 1]
+                                                }}
+                                                className="absolute w-[50%] md:w-[55%] h-[50%] md:h-[60%] rounded-[24px] md:rounded-[32px] overflow-hidden shadow-2xl"
+                                                style={{
+                                                    border: isActive ? '4px solid white' : isSecondary ? '4px solid rgba(255,255,255,0.1)' : '4px solid rgba(255,255,255,0.05)'
+                                                }}
+                                            >
+                                                <img 
+                                                    src={activeIndustry.images[imageIndex]} 
+                                                    className="w-full h-full object-cover" 
+                                                    alt="" 
+                                                />
+                                                <div className={`absolute inset-0 ${isActive ? 'bg-black/10' : isSecondary ? 'bg-black/20' : 'bg-black/30'}`} />
+                                                
+                                                {/* Industry Label on Active Card */}
+                                                {isActive && (
+                                                    <div className="absolute inset-x-0 bottom-0 h-1/2 w-full bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 md:p-6">
+                                                        <p className="text-white font-black text-sm md:text-xl uppercase tracking-tighter leading-none">
+                                                            {activeIndustry.title}
+                                                        </p>
+                                                    </div>
+                                                )}
+                                            </motion.div>
+                                        );
+                                    })}
+                                </div>
 
-                                    {/* Image 1 (Front / Focus) */}
-                                    <motion.div 
-                                        initial={{ opacity: 0, y: 40 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.1 }}
-                                        className="absolute top-[15%] left-[20%] w-[50%] md:w-[55%] h-[50%] md:h-[60%] rounded-[24px] md:rounded-[32px] overflow-hidden border-[4px] md:border-[6px] border-white shadow-[0_30px_60px_rgba(0,0,0,0.5)] z-20"
+                                {/* CAROUSEL ARROW BUTTONS */}
+                                <div className="absolute inset-y-0 left-4 right-4 flex items-center justify-between pointer-events-none z-40">
+                                    {/* Left Arrow */}
+                                    <button
+                                        onClick={() => setCurrentWhySlide((prev) => (prev - 1 + activeIndustry.images.length) % activeIndustry.images.length)}
+                                        className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-blue-600 hover:border-blue-600 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-all duration-300 shadow-lg pointer-events-auto group active:scale-95"
                                     >
-                                        <img src={activeIndustry.images[0]} className="w-full h-full object-cover" alt="" />
-                                        <div className="absolute inset-x-0 bottom-0 h-1/2 w-full bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 md:p-6">
-                                            <p className="text-white font-black text-sm md:text-xl uppercase tracking-tighter leading-none">{activeIndustry.title}</p>
-                                        </div>
-                                    </motion.div>
+                                        <svg className="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+
+                                    {/* Right Arrow */}
+                                    <button
+                                        onClick={() => setCurrentWhySlide((prev) => (prev + 1) % activeIndustry.images.length)}
+                                        className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-blue-600 hover:border-blue-600 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-all duration-300 shadow-lg pointer-events-auto group active:scale-95"
+                                    >
+                                        <svg className="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
 
-                            {/* RIGHT SIDE: PREMIUM CONTENT UI */}
+                            {/* RIGHT SIDE: CLEAN CONTENT UI */}
                             <div className="w-full lg:w-[45%] bg-white p-8 md:p-12 lg:p-20 flex flex-col justify-center">
                                 <motion.div
                                     initial={{ opacity: 0, x: 30 }}
@@ -404,7 +420,7 @@ const Industries = () => {
                                     </p>
 
                                     {/* Checklist */}
-                                    <div className="space-y-4 md:space-y-5 mb-10 md:mb-12">
+                                    <div className="space-y-4 md:space-y-5">
                                         {activeIndustry.details.map((detail, i) => (
                                             <motion.div 
                                                 key={i} 
@@ -413,7 +429,7 @@ const Industries = () => {
                                                 transition={{ delay: 0.3 + (i * 0.1) }}
                                                 className="flex items-center gap-3 md:gap-4 group"
                                             >
-                                                <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg md:rounded-xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform">
+                                                <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg md:rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform">
                                                     <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
                                                     </svg>
@@ -421,24 +437,6 @@ const Industries = () => {
                                                 <span className="text-slate-800 font-bold text-sm md:text-base">{detail}</span>
                                             </motion.div>
                                         ))}
-                                    </div>
-
-                                    {/* Footer Info / Badge & CTA */}
-                                    <div className="flex flex-col sm:flex-row items-center gap-8 pt-8 md:pt-10 border-t border-slate-100 mt-auto">
-                                        <div className="flex items-center gap-6">
-                                            <div className="text-center">
-                                                <p className="text-blue-600 font-black text-2xl md:text-3xl leading-none">99.9%</p>
-                                                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mt-1">Reliability</p>
-                                            </div>
-                                            <div className="h-10 w-[2px] bg-slate-100" />
-                                            <div>
-                                                <p className="text-[#001F3F] font-bold text-xs md:text-sm leading-tight text-center sm:text-left">ISO Certified <br/>Packaging Standards</p>
-                                            </div>
-                                        </div>
-                                        
-                                        <button className="flex-1 w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 bg-blue-600 text-white font-black text-xs md:text-sm uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-200 hover:bg-[#001F3F] hover:-translate-y-1 transition-all duration-300">
-                                            Get a Custom Quote
-                                        </button>
                                     </div>
                                 </motion.div>
                             </div>

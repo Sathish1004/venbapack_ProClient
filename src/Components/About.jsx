@@ -161,13 +161,13 @@ const TestimonialCard = ({ offset }) => {
           >
             {/* Heading */}
             <h2 className="text-[32px] md:text-[40px] font-bold text-[#0B1220] mb-8 text-center">
-              About <span className="venbapack-brand">VenbaPack</span> Industries
+              About <span className="venbapack-brand">VenbaPack Industries</span>
             </h2>
 
             {/* Description Text */}
             <div className="space-y-6 text-[#4A5568] text-[18.5px] md:text-[18px] leading-[1.8] max-w-full mx-auto">
               <p>
-                Founded with a core focus on manufacturing excellence, <span className="font-bold text-[#0B1220]"><span className="venbapack-brand">VenbaPack</span> Industries</span> has spent over a decade perfecting the art of industrial packaging. Our state-of-the-art facility in Coimbatore serves as the hub for precision engineering, where we transform raw materials into high-performance packaging solutions that protect your most valuable goods.
+                Founded with a core focus on manufacturing excellence, <span className="font-bold text-[#0B1220] venbapack-brand">VenbaPack Industries</span> has spent over a decade perfecting the art of industrial packaging. Our state-of-the-art facility in Coimbatore serves as the hub for precision engineering, where we transform raw materials into high-performance packaging solutions that protect your most valuable goods.
               </p>
 
               <p>
@@ -301,150 +301,100 @@ const TestimonialCard = ({ offset }) => {
         </div>
       </section>
 
-      {/* TRANSPORT & LOGISTICS SERVICES */}
-      <section className="w-full bg-white py-12 relative overflow-hidden">
-        {/* Subtle Background Elements */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#F0F7FF] via-white to-[#F0F7FF] opacity-70" />
-          <img 
-            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=80" 
-            alt="Logistics Background" 
-            className="w-full h-full object-cover opacity-[0.05] grayscale"
-          />
-        </div>
-
-        <div className="max-w-[1584px] mx-auto px-[3%] relative z-10">
-          
-          {/* Section Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-5xl font-black text-[#0B1633] mb-4 tracking-tight">
-              TRANSPORT SERVICES
-            </h2>
-            <div className="w-24 h-1 bg-[#1A73E8] mx-auto mb-6 rounded-full" />
-            <p className="text-[17px] text-[#475569] max-w-3xl mx-auto leading-relaxed font-medium">
-              Seamless, secure, and efficient logistics to deliver <span className="venbapack-brand">VenbaPack</span> packaging solutions across industries and borders.
-            </p>
-          </motion.div>
-
-          {/* Transport Boxes Grid - 4 Cards in Row with Up-Down Pattern */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      {/* WHY CHOOSE US — REPLACED TRANSPORT SECTION */}
+      <section className="w-full min-h-screen bg-gradient-to-b from-slate-50 to-white flex items-center justify-center py-16 relative overflow-hidden">
+        <div className="max-w-[1320px] mx-auto px-6 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
-            {/* Box 1 - Truck Transport */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+            {/* Left Side: Warehouse Image */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="group bg-[#2F3F2A] rounded-[24px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/5 hover:bg-[#1E5AFF] hover:border-[#1E5AFF] hover:-translate-y-3 transition-all duration-500"
+              transition={{ duration: 0.8 }}
+              className="w-full flex items-center justify-center"
             >
-              <div className="relative h-[220px] overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80" 
-                  alt="Truck Transport" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-blue-900/40" />
-                <div className="absolute bottom-4 left-4 flex items-center gap-3">
-                   <div className="w-10 h-10 rounded-full bg-blue-600 group-hover:bg-white flex items-center justify-center text-xl shadow-lg border border-white/20 transition-colors">🚚</div>
-                   <h3 className="text-xl font-bold text-white tracking-tight">Truck Transport</h3>
+              <div className="relative w-full max-w-[480px]">
+                <div className="relative aspect-[3/4] rounded-[32px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.12)] border-4 border-white">
+                  <img 
+                    src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80" 
+                    alt="Modern Warehouse Logistics" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/5 to-transparent" />
                 </div>
-              </div>
-              <div className="p-6">
-                <p className="text-[#D1D5DB] group-hover:text-white text-[15px] leading-relaxed transition-colors">
-                  Reliable nationwide transport for safe and timely delivery of corrugated boxes and packaging materials.
-                </p>
               </div>
             </motion.div>
 
-            {/* Box 2 - Ocean Transport */}
+            {/* Right Side: Content */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="group bg-[#2F3F2A] rounded-[24px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/5 hover:bg-[#1E5AFF] hover:border-[#1E5AFF] hover:-translate-y-3 transition-all duration-500 md:mt-12"
+              transition={{ duration: 0.8 }}
+              className="w-full"
             >
-              <div className="relative h-[220px] overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80" 
-                  alt="Sea Shipping" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-blue-900/40" />
-                <div className="absolute bottom-4 left-4 flex items-center gap-3">
-                   <div className="w-10 h-10 rounded-full bg-blue-600 group-hover:bg-white flex items-center justify-center text-xl shadow-lg border border-white/20 transition-colors">🚢</div>
-                   <h3 className="text-xl font-bold text-white tracking-tight">Ocean Transport</h3>
-                </div>
-              </div>
-              <div className="p-6">
-                <p className="text-[#D1D5DB] group-hover:text-white text-[15px] leading-relaxed transition-colors">
-                  Cost-effective bulk shipping for international clients, ensuring secure and damage-free transit.
-                </p>
-              </div>
-            </motion.div>
+              {/* Subtitle */}
+              <span className="text-blue-600 font-bold text-base md:text-lg tracking-[0.25em] uppercase mb-6 block font-industrial">
+                WHY CHOOSE US
+              </span>
+              
+              {/* Main Heading */}
+              <h2 className="text-4xl md:text-5xl font-black text-[#0B1633] mb-6 tracking-tight leading-[1.1]">
+                Complete Packaging & <br className="hidden md:block" />Logistics Solutions
+              </h2>
+              
+              {/* Description */}
+              <p className="text-slate-600 text-lg leading-relaxed mb-10 max-w-xl">
+                We combine decades of industrial expertise with modern machinery and a powerful delivery network to ensure your products are protected and delivered with absolute precision.
+              </p>
 
-            {/* Box 3 - Air Delivery */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="group bg-[#2F3F2A] rounded-[24px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/5 hover:bg-[#1E5AFF] hover:border-[#1E5AFF] hover:-translate-y-3 transition-all duration-500"
-            >
-              <div className="relative h-[220px] overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80" 
-                  alt="Air Cargo" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-blue-900/40" />
-                <div className="absolute bottom-4 left-4 flex items-center gap-3">
-                   <div className="w-10 h-10 rounded-full bg-blue-600 group-hover:bg-white flex items-center justify-center text-xl shadow-lg border border-white/20 transition-colors">✈️</div>
-                   <h3 className="text-xl font-bold text-white tracking-tight">Air Delivery</h3>
-                </div>
-              </div>
-              <div className="p-6">
-                <p className="text-[#D1D5DB] group-hover:text-white text-[15px] leading-relaxed transition-colors">
-                  Fast and secure air delivery for urgent packaging orders, ensuring quick turnaround worldwide.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Box 4 - Rail Logistics */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="group bg-[#2F3F2A] rounded-[24px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/5 hover:bg-[#1E5AFF] hover:border-[#1E5AFF] hover:-translate-y-3 transition-all duration-500 md:mt-12"
-            >
-              <div className="relative h-[220px] overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80" 
-                  alt="Rail Transport" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-blue-900/40" />
-                <div className="absolute bottom-4 left-4 flex items-center gap-3">
-                   <div className="w-10 h-10 rounded-full bg-blue-600 group-hover:bg-white flex items-center justify-center text-xl shadow-lg border border-white/20 transition-colors">🚂</div>
-                   <h3 className="text-xl font-bold text-white tracking-tight">Rail Logistics</h3>
-                </div>
-              </div>
-              <div className="p-6">
-                <p className="text-[#D1D5DB] group-hover:text-white text-[15px] leading-relaxed transition-colors">
-                  Cost-effective bulk transport with eco-friendly efficiency for large-scale packaging deliveries.
-                </p>
+              {/* Feature Cards */}
+              <div className="space-y-4">
+                {[
+                  {
+                    title: "Advanced Manufacturing",
+                    desc: "Corrugated boxes, PP woven sacks, and gum tapes produced with high-precision technology.",
+                    icon: "🏗️",
+                    bgColor: "bg-blue-50",
+                    iconColor: "text-blue-600"
+                  },
+                  {
+                    title: "Strong Supply Chain",
+                    desc: "Efficient storage, handling, and fast order processing to keep your business moving.",
+                    icon: "📦",
+                    bgColor: "bg-indigo-50",
+                    iconColor: "text-indigo-600"
+                  },
+                  {
+                    title: "Reliable Delivery",
+                    desc: "Safe, on-time logistics across regions with professional coordination and real-time tracking.",
+                    icon: "🚚",
+                    bgColor: "bg-emerald-50",
+                    iconColor: "text-emerald-600"
+                  }
+                ].map((feature, idx) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1, duration: 0.5 }}
+                    className="flex items-start gap-5 p-6 bg-white rounded-[20px] border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-100 transition-all group"
+                  >
+                    <div className={`w-14 h-14 rounded-2xl ${feature.bgColor} ${feature.iconColor} flex items-center justify-center text-2xl shadow-sm shrink-0 group-hover:scale-110 transition-transform`}>
+                      {feature.icon}
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-[#0B1633] mb-1">{feature.title}</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed">{feature.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
 
           </div>
-
         </div>
       </section>
 

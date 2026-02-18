@@ -60,11 +60,11 @@ const Navbar = () => {
       path: '/industries',
       type: 'dropdown',
       items: [
-        { name: 'Textile Industry', path: '/industries#textile', icon: Shirt, subtitle: "Fabric protection", img: TextileImg },
-        { name: 'Agri Industry', path: '/industries#agri', icon: Sprout, subtitle: "Fresh produce packaging", img: AgriImg },
-        { name: 'FMCG', path: '/industries#fmcg', icon: ShoppingCart, subtitle: "Retail-ready boxes", img: FMCGImg },
-        { name: 'FMDG', path: '/industries#fmdg', icon: Truck, subtitle: "Durable goods logistics", img: FMDGImg },
-        { name: 'Electrical Products', path: '/industries#electrical', icon: Zap, subtitle: "Shock-proof & static-safe", img: ElectricalImg },
+        { name: 'Garments', path: '/industries#textile', icon: Shirt, subtitle: "Fabric protection", img: TextileImg },
+        { name: 'Fruits', path: '/industries#agri', icon: Sprout, subtitle: "Fresh produce packaging", img: AgriImg },
+        { name: 'Cosmetics', path: '/industries#fmcg', icon: ShoppingCart, subtitle: "Retail-ready boxes", img: FMCGImg },
+        { name: 'Home Appliances', path: '/industries#fmdg', icon: Truck, subtitle: "Durable goods logistics", img: FMDGImg },
+        { name: 'Electrical & Electronics', path: '/industries#electrical', icon: Zap, subtitle: "Shock-proof & static-safe", img: ElectricalImg },
       ]
     },
     {
@@ -201,16 +201,55 @@ const Navbar = () => {
               <div className="px-6 py-8 space-y-4">
                 {menuItems.map((item) => (
                   <div key={item.name} className="flex flex-col">
-                    <Link
-                      to={item.path}
-                      onClick={() => setIsOpen(false)}
-                      className={`text-xl font-bold py-3 border-b border-slate-50 flex items-center justify-between ${
-                        location.pathname === item.path ? 'text-[#1E90FF]' : 'text-slate-800'
-                      }`}
-                    >
-                      {item.name}
-                      <ArrowRight className="w-5 h-5 opacity-30" />
-                    </Link>
+                    {item.type === 'dropdown' ? (
+                      <>
+                        <button
+                          onClick={() => toggleDropdown(item.name)}
+                          className={`text-xl font-bold py-3 border-b border-slate-50 flex items-center justify-between ${
+                            location.pathname === item.path ? 'text-[#1E90FF]' : 'text-slate-800'
+                          }`}
+                        >
+                          {item.name}
+                          <ChevronDown className={`w-5 h-5 transition-transform ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
+                        </button>
+                        <AnimatePresence>
+                          {activeDropdown === item.name && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="pl-4 space-y-2 py-2"
+                            >
+                              {item.items.map((sub, idx) => (
+                                <Link
+                                  key={idx}
+                                  to={sub.path}
+                                  onClick={() => {
+                                    setIsOpen(false);
+                                    setActiveDropdown(null);
+                                  }}
+                                  className="flex items-center gap-3 py-2 text-slate-600 font-semibold"
+                                >
+                                  <sub.icon className="w-4 h-4 text-[#1E90FF]" />
+                                  {sub.name}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    ) : (
+                      <Link
+                        to={item.path}
+                        onClick={() => setIsOpen(false)}
+                        className={`text-xl font-bold py-3 border-b border-slate-50 flex items-center justify-between ${
+                          location.pathname === item.path ? 'text-[#1E90FF]' : 'text-slate-800'
+                        }`}
+                      >
+                        {item.name}
+                        <ArrowRight className="w-5 h-5 opacity-30" />
+                      </Link>
+                    )}
                   </div>
                 ))}
                 

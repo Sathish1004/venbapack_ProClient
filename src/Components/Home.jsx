@@ -199,26 +199,15 @@ const Home = () => {
         <div className="absolute inset-0 bg-blue-900/5 mix-blend-overlay z-0 pointer-events-none" />
 
         {/* --- HERO CONTENT --- */}
-        <div className="relative z-20 max-w-5xl hero-content pt-[25vh] md:pt-[30vh]">
+        <div className="relative z-20 max-w-5xl hero-content pt-[45vh] md:pt-[55vh]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h1 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter drop-shadow-2xl font-premium uppercase leading-[0.9]">
-                 <br /> <span className="text-blue-600"></span>
+            <h1 className="text-6xl md:text-9xl font-black text-white mb-8 tracking-tighter drop-shadow-2xl font-premium leading-[0.9]">
+                 Redefining <br /> <span className="text-blue-600">Packaging</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-100 mb-12 max-w-2xl mx-auto font-medium leading-relaxed font-premium opacity-95 drop-shadow-lg">
-              Industrial grade corrugated boxes, rolls and packaging for global enterprises.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mt-12">
-              <Link to="/products" className="group px-12 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold transition-all shadow-2xl hover:shadow-blue-500/40 flex items-center justify-center gap-3 text-lg">
-                Explore Products <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link to="/contact#send-message" className="px-12 py-5 bg-white/10 hover:bg-white/20 text-white border-2 border-white/40 rounded-full font-bold transition-all backdrop-blur-md flex items-center justify-center text-lg">
-                Get a Quote
-              </Link>
-            </div>
           </motion.div>
         </div>
       </div>
@@ -242,7 +231,7 @@ const Home = () => {
             className="text-center mb-10"
           >
             <h2 className="text-4xl lg:text-5xl font-black text-slate-900 uppercase tracking-tight mb-2">
-              <span className="venbapack-brand">VenbaPack</span> <span className="text-[#1E90FF]">Industries</span>
+              <span className="venbapack-brand">VenbaPack Industries</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-[#1E90FF] to-slate-400 mx-auto rounded-full mt-4" />
           </motion.div>
@@ -276,7 +265,7 @@ const Home = () => {
                   
                   <div className="space-y-4 text-slate-700 text-[1.158rem] leading-relaxed font-medium">
                     <p>
-                      <span className="font-bold text-slate-900"><span className="venbapack-brand">VenbaPack</span> Industries</span> — With over a decade of expertise, we have established ourselves as a premier provider of high-quality, reliable, and sustainable packaging solutions. Operating from our state-of-the-art manufacturing facility, we serve a global clientele with precision-engineered corrugated packaging and industrial-strength materials.
+                      <span className="font-bold text-slate-900 venbapack-brand">VenbaPack Industries</span> — With over a decade of expertise, we have established ourselves as a premier provider of high-quality, reliable, and sustainable packaging solutions. Operating from our state-of-the-art manufacturing facility, we serve a global clientele with precision-engineered corrugated packaging and industrial-strength materials.
                     </p>
                     
                     <p>
@@ -296,7 +285,7 @@ const Home = () => {
               <div className="p-6 lg:p-8 flex items-center justify-center bg-gradient-to-br from-slate-50 to-white">
                 <div className="w-full h-full flex items-center justify-center overflow-hidden rounded-2xl">
                   <img 
-                    src="/about main page.png" 
+                    src="/HA.jpg" 
                     alt="VenbaPack Industries Packaging" 
                     className="w-full h-full object-cover rounded-2xl"
                     style={{ maxHeight: '500px', objectPosition: 'center' }}
